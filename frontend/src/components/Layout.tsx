@@ -4,10 +4,8 @@ import {
   Home, 
   GraduationCap, 
   Boxes, 
-  Settings,
   Sparkles
 } from 'lucide-react'
-import { InteractivitySelector } from './InteractivitySelector'
 
 const navItems = [
   { path: '/', icon: Home, label: 'Home' },
@@ -67,12 +65,8 @@ export function Layout() {
             })}
           </nav>
 
-          {/* Right side */}
+          {/* Right side - placeholder for future features */}
           <div className="flex items-center gap-4">
-            <InteractivitySelector />
-            <button className="p-2 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors">
-              <Settings className="w-5 h-5" />
-            </button>
           </div>
         </div>
       </header>

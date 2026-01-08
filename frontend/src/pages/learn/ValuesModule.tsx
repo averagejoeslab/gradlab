@@ -4,8 +4,10 @@ import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react'
 import { useStore } from '../../store/useStore'
 
+// Always show hints for maximum helpfulness
+
 export function ValuesModule() {
-  const { markModuleComplete, interactivityLevel } = useStore()
+  const { markModuleComplete } = useStore()
   const [value, setValue] = useState(5)
   const [step, setStep] = useState(0)
 
@@ -228,15 +230,15 @@ export function ValuesModule() {
         )}
       </div>
 
-      {/* Hint for guided mode */}
-      {interactivityLevel === 'guided' && step === 1 && (
+      {/* Helpful hint */}
+      {step === 1 && (
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           className="mt-6 p-4 rounded-xl bg-flow-600/10 border border-flow-500/30"
         >
           <p className="text-sm text-flow-300">
-            💡 <strong>Hint:</strong> Try dragging the slider to see how the Value changes. 
+            💡 <strong>Tip:</strong> Try dragging the slider to see how the Value changes. 
             Values can be positive, negative, or zero!
           </p>
         </motion.div>

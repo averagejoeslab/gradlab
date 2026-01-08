@@ -26,19 +26,12 @@ Six progressive modules that take you from zero to understanding neural networks
 - **Neuron Visualizer** — Adjust weights and biases with sliders, see real-time output changes
 - **Training Arena** — Train a network on 2D data, watch the decision boundary evolve live
 
-### 🎚️ Interactivity Levels
-
-Choose your learning style:
-- **Guided** — Step-by-step tutorials with hints
-- **Explorer** — Learn at your own pace with tips
-- **Sandbox** — Full freedom to experiment
-
 ## 🚀 Getting Started
 
 ```bash
 # Clone the repository
 git clone https://github.com/yourusername/micrograd-playground.git
-cd micrograd-playground
+cd micrograd-playground/frontend
 
 # Install dependencies
 npm install
@@ -55,25 +48,28 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 ## 🏗️ Project Structure
 
 ```
-src/
-├── core/                 # TypeScript port of micrograd
-│   ├── engine.ts         # Value class with autograd
-│   └── nn.ts             # Module, Neuron, Layer, MLP
-├── components/
-│   ├── graph/            # Computation graph visualization
-│   ├── neuron/           # Neuron builder UI
-│   └── training/         # Training arena
-├── pages/
-│   ├── HomePage.tsx      # Landing page
-│   ├── LearnPage.tsx     # Module selection
-│   ├── PlaygroundPage.tsx
-│   └── learn/            # Individual learning modules
-└── store/                # State management
+frontend/
+├── src/
+│   ├── core/             # TypeScript port of micrograd
+│   │   ├── engine.ts     # Value class with autograd
+│   │   └── nn.ts         # Module, Neuron, Layer, MLP
+│   ├── components/
+│   │   ├── graph/        # Computation graph visualization
+│   │   ├── neuron/       # Neuron builder UI
+│   │   └── training/     # Training arena
+│   ├── pages/
+│   │   ├── HomePage.tsx
+│   │   ├── LearnPage.tsx
+│   │   ├── PlaygroundPage.tsx
+│   │   └── learn/        # Individual learning modules
+│   └── store/            # State management
+├── package.json
+└── vite.config.ts
 ```
 
 ## 🧠 The Core Engine
 
-The `src/core/` directory contains a faithful TypeScript reimplementation of micrograd (~150 lines). It supports:
+The `frontend/src/core/` directory contains a faithful TypeScript reimplementation of micrograd (~150 lines). It supports:
 
 - Automatic differentiation (autograd)
 - Basic operations: `add`, `mul`, `pow`, `relu`
