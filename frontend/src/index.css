@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-void-950 text-gray-100 antialiased;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-void-900;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-void-600 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-void-500;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-void-800/50 backdrop-blur-xl border border-white/5;
+  }
+
+  .glass-card {
+    @apply glass rounded-2xl p-6;
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3), 0 0 40px rgba(59, 130, 246, 0.1);
+  }
+
+  .glow-orange {
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.3), 0 0 40px rgba(249, 115, 22, 0.1);
+  }
+
+  .node-value {
+    @apply bg-void-700 border-2 border-flow-500/50 rounded-xl px-4 py-3 
+           font-mono text-lg cursor-move select-none
+           hover:border-flow-400 hover:glow-blue transition-all duration-200;
+  }
+
+  .node-op {
+    @apply bg-void-800 border-2 border-gray-600 rounded-full w-12 h-12
+           flex items-center justify-center font-mono text-xl
+           hover:border-gray-400 transition-colors;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 bg-flow-600 hover:bg-flow-500 text-white font-medium
+           rounded-xl transition-all duration-200 hover:shadow-lg hover:glow-blue;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-void-700 hover:bg-void-600 text-gray-200 font-medium
+           rounded-xl border border-white/10 transition-all duration-200;
+  }
+
+  .input-value {
+    @apply bg-void-900 border border-white/10 rounded-lg px-4 py-2
+           font-mono text-center focus:outline-none focus:border-flow-500
+           transition-colors;
+  }
+}
+
+/* React Flow customizations */
+.react-flow__background {
+  background-color: #08090a !important;
+}
+
+.react-flow__controls {
+  @apply bg-void-800 border border-white/10 rounded-xl overflow-hidden;
+}
+
+.react-flow__controls-button {
+  @apply bg-void-800 border-none text-gray-400 hover:bg-void-700 hover:text-white;
+}
+
+.react-flow__minimap {
+  @apply bg-void-800 border border-white/10 rounded-xl overflow-hidden;
+}
+
+.react-flow__edge-path {
+  stroke-width: 2;
+}
+
+/* Gradient animation for backward pass */
+@keyframes gradient-pulse {
+  0% {
+    stroke: #3b82f6;
+    filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.5));
+  }
+  50% {
+    stroke: #f97316;
+    filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.7));
+  }
+  100% {
+    stroke: #f97316;
+    filter: drop-shadow(0 0 4px rgba(249, 115, 22, 0.5));
+  }
+}
+
+.edge-backward {
+  animation: gradient-pulse 0.5s ease-out forwards;
+}
+
