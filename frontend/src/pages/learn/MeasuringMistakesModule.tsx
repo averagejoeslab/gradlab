@@ -236,18 +236,18 @@ export function MeasuringMistakesModule() {
 
         <div className="flex items-center justify-center my-8">
           <svg viewBox="0 0 300 140" className="w-full max-w-md">
-            {/* Loss landscape - bowl/valley shape */}
+            {/* Loss landscape - smooth valley shape using cubic bezier */}
             <path
-              d="M 20 30 Q 60 30 100 60 Q 150 100 200 60 Q 240 30 280 30"
+              d="M 20 25 C 50 25, 70 25, 90 50 C 120 90, 130 100, 150 100 C 170 100, 180 90, 210 50 C 230 25, 250 25, 280 25"
               fill="none"
               stroke="#374151"
               strokeWidth="3"
             />
             
-            {/* Starting point - high on the hill (left side) */}
-            <circle cx="70" cy="38" r="8" className="fill-accent-rose" />
-            <text x="70" y="25" textAnchor="middle" className="fill-accent-rose text-xs">starting point</text>
-            <text x="70" y="60" textAnchor="middle" className="fill-gray-500 text-[10px]">(high loss)</text>
+            {/* Starting point - on the left slope */}
+            <circle cx="50" cy="25" r="8" className="fill-accent-rose" />
+            <text x="50" y="15" textAnchor="middle" className="fill-accent-rose text-xs">starting point</text>
+            <text x="95" y="35" textAnchor="start" className="fill-gray-500 text-[10px]">(high loss)</text>
             
             {/* Minimum marker - at the bottom of the valley */}
             <circle cx="150" cy="100" r="6" className="fill-accent-emerald" />
@@ -259,7 +259,7 @@ export function MeasuringMistakesModule() {
                 <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280" />
               </marker>
             </defs>
-            <path d="M 85 45 Q 110 65 135 90" stroke="#6b7280" strokeWidth="1.5" strokeDasharray="5,5" fill="none" markerEnd="url(#arrowhead2)" />
+            <path d="M 60 30 C 80 50, 110 80, 140 95" stroke="#6b7280" strokeWidth="1.5" strokeDasharray="5,5" fill="none" markerEnd="url(#arrowhead2)" />
           </svg>
         </div>
 
