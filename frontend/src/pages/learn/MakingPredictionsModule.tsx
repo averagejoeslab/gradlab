@@ -48,7 +48,11 @@ export function MakingPredictionsModule() {
           What you'll learn
         </h2>
         <p className="text-gray-300 mb-6 leading-relaxed text-lg">
-          You know the parts. Now let's see them in action! In this module, you'll discover:
+          In Building Blocks, you learned about <span className="text-accent-cyan">neurons</span>, <span className="text-accent-violet">weights</span>, <span className="text-accent-emerald">layers</span>, and <span className="text-flow-400">MLPs</span>. 
+          Now let's watch data actually flow through these parts!
+        </p>
+        <p className="text-gray-300 mb-6 leading-relaxed">
+          In this module, you'll discover:
         </p>
         <div className="space-y-3 mb-6">
           <div className="flex items-start gap-3 p-3 rounded-lg bg-void-800/30">
@@ -144,7 +148,7 @@ export function MakingPredictionsModule() {
           What happens at each layer?
         </h2>
         <p className="text-gray-300 mb-6 leading-relaxed">
-          At each layer, every neuron does its simple job:
+          At each layer, every neuron does the same job you learned in Building Blocks:
         </p>
 
         <div className="space-y-4 mb-6">
@@ -388,8 +392,16 @@ export function MakingPredictionsModule() {
         </div>
 
         <p className="text-gray-300 mb-6 leading-relaxed">
+          Remember our toddler who called a cat a "dog"? They could only improve because someone 
+          <strong className="text-white"> told them they were wrong</strong>. Our network is in the same 
+          position — it made a guess, but it needs feedback to learn.
+        </p>
+
+        <p className="text-gray-300 mb-6 leading-relaxed">
           To make good predictions, we need to <strong className="text-white">train</strong> the network — 
-          adjust its weights so the outputs match what we want.
+          adjust its weights so the outputs match what we want. But first: how do we even know 
+          <em> how wrong</em> we were? We need to <strong className="text-accent-rose">measure the mistake</strong>. 
+          That's what we'll learn next.
         </p>
 
         <div className="bg-accent-emerald/10 border border-accent-emerald/30 rounded-xl p-4 mb-6">
