@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Check, HelpCircle, Play } from 'lucide-react'
 import { useStore } from '../../store/useStore'
-import { Value } from '../../core/engine'
 
-export function GradientsModule() {
+export function FindingWhatToFixModule() {
   const { markModuleComplete } = useStore()
   const [step, setStep] = useState(0)
   const [a, setA] = useState(2)
@@ -13,21 +12,10 @@ export function GradientsModule() {
   const [showWiggle, setShowWiggle] = useState(false)
   const [showGradients, setShowGradients] = useState(false)
 
-  const totalSteps = 6
+  const totalSteps = 7
 
-  const computation = useMemo(() => {
-    const valA = new Value(a)
-    const valB = new Value(b)
-    const c = valA.mul(valB)
-    c.backward()
-    return {
-      result: c.data,
-      gradA: valA.grad,
-      gradB: valB.grad,
-    }
-  }, [a, b])
+  const result = a * b
 
-  // For the wiggle demonstration
   const wiggleDemo = useMemo(() => {
     const original = a * b
     const wiggled = (a + 0.1) * b
@@ -36,7 +24,7 @@ export function GradientsModule() {
   }, [a, b])
 
   const handleComplete = () => {
-    markModuleComplete('gradients')
+    markModuleComplete('finding-what-to-fix')
   }
 
   return (
@@ -50,8 +38,8 @@ export function GradientsModule() {
           <ArrowLeft className="w-5 h-5" />
         </Link>
         <div>
-          <h1 className="text-3xl font-bold text-white">Gradients</h1>
-          <p className="text-gray-400">How to know what to improve</p>
+          <h1 className="text-3xl font-bold text-white">Finding What to Fix</h1>
+          <p className="text-gray-400">Tracing back to find the problem</p>
         </div>
       </div>
 
@@ -71,7 +59,8 @@ export function GradientsModule() {
       <div className="mb-6 p-3 rounded-lg bg-void-800/30 border border-white/5 flex items-center gap-3">
         <HelpCircle className="w-4 h-4 text-gray-500" />
         <span className="text-sm text-gray-500">
-          Remember: A <span className="text-accent-violet">computation graph</span> traces how values combine into outputs
+          Remember: The <span className="text-accent-rose">loss</span> tells us how wrong we are. 
+          Now we need to find <em>which weights</em> to change.
         </span>
       </div>
 
@@ -82,29 +71,33 @@ export function GradientsModule() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
           >
-            <h2 className="text-2xl font-semibold text-white mb-4">
-              The problem we need to solve
+            <h2 className="text-2xl font-semibold text-white mb-6">
+              What you'll learn
             </h2>
-            <p className="text-gray-300 mb-6 leading-relaxed">
-              Imagine you have a neural network that's giving wrong answers. 
-              It says "cat" when it should say "dog."
+            <p className="text-gray-300 mb-6 leading-relaxed text-lg">
+              We know our prediction is wrong. But the network has many weights. 
+              Which ones caused the mistake? In this module, you'll discover:
             </p>
-            <p className="text-gray-300 mb-6 leading-relaxed">
-              You want to fix it. But the network has thousands of Values (numbers) inside. 
-              <strong className="text-white"> Which ones should you change? And by how much?</strong>
-            </p>
-            <div className="bg-void-800 rounded-xl p-6 mb-6">
-              <div className="text-center">
-                <div className="text-4xl mb-4">🤔</div>
-                <p className="text-gray-300">
-                  "I have 1,000 knobs I could turn...<br/>
-                  <span className="text-accent-rose">Which ones actually matter for the output?</span>"
-                </p>
+            <div className="space-y-3 mb-6">
+              <div className="flex items-start gap-3 p-3 rounded-lg bg-void-800/30">
+                <div className="w-6 h-6 rounded-full bg-grad-600/30 flex items-center justify-center text-grad-400 text-sm">✓</div>
+                <span className="text-gray-300">How to measure which weights matter most</span>
+              </div>
+              <div className="flex items-start gap-3 p-3 rounded-lg bg-void-800/30">
+                <div className="w-6 h-6 rounded-full bg-grad-600/30 flex items-center justify-center text-grad-400 text-sm">✓</div>
+                <span className="text-gray-300">What a gradient is (it's simpler than it sounds!)</span>
+              </div>
+              <div className="flex items-start gap-3 p-3 rounded-lg bg-void-800/30">
+                <div className="w-6 h-6 rounded-full bg-grad-600/30 flex items-center justify-center text-grad-400 text-sm">✓</div>
+                <span className="text-gray-300">How backpropagation traces errors backward</span>
               </div>
             </div>
-            <p className="text-gray-300 leading-relaxed">
-              This is the key question that gradients answer. Let's build up to it step by step.
-            </p>
+            <div className="bg-void-800 rounded-xl p-6 border-l-4 border-grad-500">
+              <p className="text-gray-300">
+                <strong className="text-white">This is the clever part.</strong> Gradients are 
+                the key insight that makes neural networks learnable.
+              </p>
+            </div>
           </motion.div>
         )}
 
@@ -113,14 +106,44 @@ export function GradientsModule() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
           >
-            <h2 className="text-2xl font-semibold text-white mb-4">
-              What if we wiggle a number?
+            <h2 className="text-2xl font-semibold text-white mb-6">
+              The question: Which weights matter?
             </h2>
             <p className="text-gray-300 mb-6 leading-relaxed">
-              Let's start with a simple question. We have: <strong className="text-flow-400">a × b = result</strong>
+              Imagine you have a network with 1,000 weights. The prediction is wrong. 
+              You could try changing each weight randomly, but that would take forever!
             </p>
             <p className="text-gray-300 mb-6 leading-relaxed">
-              What happens to the result if we change <span className="text-flow-400">a</span> just a tiny bit?
+              What we need is a way to ask: <strong className="text-white">"If I change this weight a tiny bit, 
+              how much does the loss change?"</strong>
+            </p>
+
+            <div className="bg-void-800 rounded-xl p-6 mb-6">
+              <div className="text-center">
+                <div className="text-4xl mb-4">🔍</div>
+                <p className="text-gray-300">
+                  Some weights have a <span className="text-accent-emerald">big effect</span> on the output.<br/>
+                  Others have almost <span className="text-gray-500">no effect</span>.<br/>
+                  <strong className="text-white">We want to find the important ones.</strong>
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        {step === 2 && (
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+          >
+            <h2 className="text-2xl font-semibold text-white mb-6">
+              Let's wiggle a number
+            </h2>
+            <p className="text-gray-300 mb-6 leading-relaxed">
+              Start with a simple example: <span className="text-flow-400">a</span> × <span className="text-flow-400">b</span> = result
+            </p>
+            <p className="text-gray-300 mb-6 leading-relaxed">
+              What happens if we change <span className="text-flow-400">a</span> just a tiny bit?
             </p>
 
             <div className="flex items-center justify-center gap-6 my-8">
@@ -210,21 +233,21 @@ export function GradientsModule() {
           </motion.div>
         )}
 
-        {step === 2 && (
+        {step === 3 && (
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
           >
-            <h2 className="text-2xl font-semibold text-white mb-4">
-              Some values matter more than others
+            <h2 className="text-2xl font-semibold text-white mb-6">
+              Some numbers matter more
             </h2>
             <p className="text-gray-300 mb-6 leading-relaxed">
-              Here's the insight: when we wiggle <span className="text-flow-400">a</span>, 
-              the result changes by an amount related to <span className="text-flow-400">b</span>.
+              When we wiggle <span className="text-flow-400">a</span>, 
+              the result changes by an amount that depends on <span className="text-flow-400">b</span>.
             </p>
             <p className="text-gray-300 mb-6 leading-relaxed">
               And when we wiggle <span className="text-flow-400">b</span>, 
-              the result changes by an amount related to <span className="text-flow-400">a</span>.
+              the result changes by an amount that depends on <span className="text-flow-400">a</span>.
             </p>
 
             <div className="grid md:grid-cols-2 gap-4 mb-6">
@@ -250,25 +273,24 @@ export function GradientsModule() {
 
             <div className="bg-void-800 rounded-xl p-6">
               <p className="text-gray-300 mb-4">
-                <strong className="text-white">The pattern:</strong> The "sensitivity" of the result to each input 
-                depends on the <em>other</em> values in the equation.
+                <strong className="text-white">The pattern:</strong> How much the result changes 
+                depends on the <em>other</em> numbers in the equation.
               </p>
               <p className="text-gray-400 text-sm">
-                In <span className="text-flow-400">a × b</span>: 
-                changing <span className="text-flow-400">a</span> matters more when <span className="text-flow-400">b</span> is large,
-                and changing <span className="text-flow-400">b</span> matters more when <span className="text-flow-400">a</span> is large.
+                When <span className="text-flow-400">b</span> is large, changing <span className="text-flow-400">a</span> has a bigger effect.
+                When <span className="text-flow-400">a</span> is large, changing <span className="text-flow-400">b</span> has a bigger effect.
               </p>
             </div>
           </motion.div>
         )}
 
-        {step === 3 && (
+        {step === 4 && (
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
           >
-            <h2 className="text-2xl font-semibold text-white mb-4">
-              Now we can name it: The Gradient
+            <h2 className="text-2xl font-semibold text-white mb-6">
+              The gradient: Sensitivity score
             </h2>
             <p className="text-gray-300 mb-6 leading-relaxed">
               This "sensitivity" — <em>how much the output changes when we change an input</em> — 
@@ -278,11 +300,11 @@ export function GradientsModule() {
             <div className="bg-grad-600/10 border border-grad-500/30 rounded-xl p-6 mb-6">
               <div className="text-center">
                 <div className="text-lg text-gray-300 mb-2">
-                  The <span className="text-grad-400 font-semibold">gradient</span> of a value tells you:
+                  The <span className="text-grad-400 font-semibold">gradient</span> of a weight tells you:
                 </div>
                 <div className="text-xl text-white font-medium">
-                  "If I nudge this number a tiny bit,<br/>
-                  how much does the final result change?"
+                  "If I nudge this weight a tiny bit,<br/>
+                  how much does the loss change?"
                 </div>
               </div>
             </div>
@@ -312,29 +334,35 @@ export function GradientsModule() {
               </div>
             </div>
 
-            <p className="text-gray-300 leading-relaxed">
-              <strong className="text-white">This is why Values store two things:</strong> the number itself, 
-              and its gradient. The gradient is the key to learning!
-            </p>
+            <div className="space-y-3">
+              <div className="p-3 rounded-lg bg-void-800/50">
+                <span className="text-accent-emerald">Big gradient</span>
+                <span className="text-gray-400"> = this weight has a big effect on the output</span>
+              </div>
+              <div className="p-3 rounded-lg bg-void-800/50">
+                <span className="text-gray-500">Small gradient</span>
+                <span className="text-gray-400"> = this weight barely affects the output</span>
+              </div>
+            </div>
           </motion.div>
         )}
 
-        {step === 4 && (
+        {step === 5 && (
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
           >
-            <h2 className="text-2xl font-semibold text-white mb-4">
-              Backpropagation: Computing gradients automatically
+            <h2 className="text-2xl font-semibold text-white mb-6">
+              Backpropagation: Following the trail
             </h2>
             <p className="text-gray-300 mb-6 leading-relaxed">
               In a real neural network, we don't calculate gradients by hand. 
               We use a technique called <strong className="text-flow-400">backpropagation</strong>.
             </p>
             <p className="text-gray-300 mb-6 leading-relaxed">
-              Remember how the computation graph traces the path from inputs to output? 
-              Backpropagation <strong className="text-white">walks backward</strong> along that path, 
-              computing gradients as it goes.
+              Remember how data flows <em>forward</em> through the network to make predictions? 
+              Backpropagation works <strong className="text-white">backward</strong> — 
+              from the loss, tracing back to find which weights caused the error.
             </p>
 
             <div className="flex items-center justify-center gap-4 my-8">
@@ -350,8 +378,8 @@ export function GradientsModule() {
                     animate={{ opacity: 1, y: 0 }}
                     className="mt-2 pt-2 border-t border-white/10 w-full text-center"
                   >
-                    <div className="text-xs text-gray-500">grad</div>
-                    <div className="text-sm font-mono text-grad-400">{computation.gradA}</div>
+                    <div className="text-xs text-gray-500">gradient</div>
+                    <div className="text-sm font-mono text-grad-400">{b}</div>
                   </motion.div>
                 )}
               </div>
@@ -369,8 +397,8 @@ export function GradientsModule() {
                     animate={{ opacity: 1, y: 0 }}
                     className="mt-2 pt-2 border-t border-white/10 w-full text-center"
                   >
-                    <div className="text-xs text-gray-500">grad</div>
-                    <div className="text-sm font-mono text-grad-400">{computation.gradB}</div>
+                    <div className="text-xs text-gray-500">gradient</div>
+                    <div className="text-sm font-mono text-grad-400">{a}</div>
                   </motion.div>
                 )}
               </div>
@@ -378,17 +406,17 @@ export function GradientsModule() {
               <div className="text-xl text-gray-500">=</div>
 
               <div className={`w-28 h-28 rounded-xl border-2 flex flex-col items-center justify-center
-                ${showGradients ? 'bg-grad-600/20 border-grad-500/50 glow-orange' : 'bg-grad-600/10 border-grad-500/30'}`}
+                ${showGradients ? 'bg-grad-600/20 border-grad-500/50' : 'bg-grad-600/10 border-grad-500/30'}`}
               >
                 <div className="text-xs text-gray-500">result</div>
-                <div className="text-2xl font-mono text-white">{computation.result}</div>
+                <div className="text-2xl font-mono text-white">{result}</div>
                 {showGradients && (
                   <motion.div
                     initial={{ opacity: 0, y: 5 }}
                     animate={{ opacity: 1, y: 0 }}
                     className="mt-2 pt-2 border-t border-white/10 w-full text-center"
                   >
-                    <div className="text-xs text-gray-500">grad</div>
+                    <div className="text-xs text-gray-500">gradient</div>
                     <div className="text-sm font-mono text-grad-400">1</div>
                   </motion.div>
                 )}
@@ -413,82 +441,77 @@ export function GradientsModule() {
                 className="bg-void-800 rounded-xl p-4 text-sm"
               >
                 <p className="text-gray-300 mb-2">
-                  <strong className="text-grad-400">Backpropagation computed:</strong>
+                  <strong className="text-grad-400">Backpropagation found:</strong>
                 </p>
                 <ul className="space-y-1 text-gray-400">
-                  <li>• The result's gradient is <span className="text-grad-400">1</span> (it's what we're measuring)</li>
-                  <li>• <span className="text-flow-400">a</span>'s gradient is <span className="text-grad-400">{computation.gradA}</span> (equals b)</li>
-                  <li>• <span className="text-flow-400">b</span>'s gradient is <span className="text-grad-400">{computation.gradB}</span> (equals a)</li>
+                  <li>• <span className="text-flow-400">a</span>'s gradient is <span className="text-grad-400">{b}</span> — changing a affects the result by {b}×</li>
+                  <li>• <span className="text-flow-400">b</span>'s gradient is <span className="text-grad-400">{a}</span> — changing b affects the result by {a}×</li>
                 </ul>
               </motion.div>
             )}
           </motion.div>
         )}
 
-        {step === 5 && (
+        {step === 6 && (
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
           >
-            <h2 className="text-2xl font-semibold text-white mb-4">
-              Why this is the key to learning
+            <h2 className="text-2xl font-semibold text-white mb-6">
+              Now we know what to fix!
             </h2>
             <p className="text-gray-300 mb-6 leading-relaxed">
-              Remember the problem we started with? A neural network giving wrong answers, 
-              and we need to know which values to change?
-            </p>
-            <p className="text-gray-300 mb-6 leading-relaxed">
-              <strong className="text-white">Gradients are the answer.</strong> They tell us:
+              Gradients answer all our questions about which weights to change:
             </p>
 
             <div className="space-y-4 mb-6">
               <div className="p-4 rounded-xl bg-void-800/50 border-l-4 border-grad-500">
-                <div className="font-medium text-white mb-1">Which values matter</div>
+                <div className="font-medium text-white mb-1">Which weights matter?</div>
                 <div className="text-sm text-gray-400">
-                  Large gradient = this value has a big effect on the output
+                  Look at the gradient size — large gradient = big effect on loss
                 </div>
               </div>
               <div className="p-4 rounded-xl bg-void-800/50 border-l-4 border-grad-500">
-                <div className="font-medium text-white mb-1">Which direction to change</div>
+                <div className="font-medium text-white mb-1">Which direction to change?</div>
                 <div className="text-sm text-gray-400">
-                  Positive gradient = increasing this value increases the output
+                  Positive gradient = increasing the weight increases the loss (so decrease it!)
                 </div>
               </div>
               <div className="p-4 rounded-xl bg-void-800/50 border-l-4 border-grad-500">
-                <div className="font-medium text-white mb-1">How much to change</div>
+                <div className="font-medium text-white mb-1">How much to change?</div>
                 <div className="text-sm text-gray-400">
-                  The gradient magnitude tells us how sensitive the output is
+                  The gradient magnitude tells us how sensitive the loss is
                 </div>
               </div>
             </div>
 
-            <div className="bg-accent-emerald/10 border border-accent-emerald/30 rounded-xl p-4">
+            <div className="bg-accent-emerald/10 border border-accent-emerald/30 rounded-xl p-4 mb-6">
               <div className="flex items-start gap-3">
                 <Check className="w-5 h-5 text-accent-emerald mt-0.5" />
                 <div>
                   <div className="font-medium text-white">Key Takeaway</div>
                   <p className="text-sm text-gray-400 mt-1">
-                    The <span className="text-grad-400">gradient</span> tells us how sensitive the output is to each input.
-                    <span className="text-flow-400"> Backpropagation</span> computes all gradients automatically by walking 
-                    backward through the computation graph. This is how neural networks know what to adjust when learning.
+                    The <span className="text-grad-400">gradient</span> tells us how sensitive the loss is to each weight.
+                    <span className="text-flow-400"> Backpropagation</span> calculates all gradients automatically by 
+                    working backward from the loss. Now we know exactly which weights to adjust!
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="mt-6 p-4 rounded-xl bg-void-800/50 border border-white/5">
+            <div className="p-4 rounded-xl bg-void-800/50 border border-white/5">
               <div className="text-sm text-gray-500 mb-2">New vocabulary:</div>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <div className="text-grad-400 font-medium">Gradient</div>
                   <div className="text-xs text-gray-400">
-                    How much the output changes when you change a value
+                    How much the loss changes when you change a weight
                   </div>
                 </div>
                 <div>
                   <div className="text-flow-400 font-medium">Backpropagation</div>
                   <div className="text-xs text-gray-400">
-                    Walking backward through the graph to compute all gradients
+                    Working backward to calculate all gradients at once
                   </div>
                 </div>
               </div>
@@ -518,11 +541,11 @@ export function GradientsModule() {
           </button>
         ) : (
           <Link
-            to="/learn/neuron"
+            to="/learn/making-adjustments"
             onClick={handleComplete}
             className="btn-primary flex items-center gap-2"
           >
-            Continue to Neurons
+            Continue to Making Adjustments
             <ArrowRight className="w-4 h-4" />
           </Link>
         )}
@@ -530,3 +553,4 @@ export function GradientsModule() {
     </div>
   )
 }
+

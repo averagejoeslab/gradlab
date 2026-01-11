@@ -4,12 +4,12 @@ import { HomePage } from './pages/HomePage'
 import { PlaygroundPage } from './pages/PlaygroundPage'
 import { LearnPage } from './pages/LearnPage'
 import { IntroductionModule } from './pages/learn/IntroductionModule'
-import { ValuesModule } from './pages/learn/ValuesModule'
-import { OperationsModule } from './pages/learn/OperationsModule'
-import { GradientsModule } from './pages/learn/GradientsModule'
-import { NeuronModule } from './pages/learn/NeuronModule'
-import { NetworkModule } from './pages/learn/NetworkModule'
-import { TrainingModule } from './pages/learn/TrainingModule'
+import { BuildingBlocksModule } from './pages/learn/BuildingBlocksModule'
+import { MakingPredictionsModule } from './pages/learn/MakingPredictionsModule'
+import { MeasuringMistakesModule } from './pages/learn/MeasuringMistakesModule'
+import { FindingWhatToFixModule } from './pages/learn/FindingWhatToFixModule'
+import { MakingAdjustmentsModule } from './pages/learn/MakingAdjustmentsModule'
+import { PuttingItTogetherModule } from './pages/learn/PuttingItTogetherModule'
 
 export default function App() {
   return (
@@ -19,12 +19,12 @@ export default function App() {
         <Route path="playground" element={<PlaygroundPage />} />
         <Route path="learn" element={<LearnPage />} />
         <Route path="learn/introduction" element={<IntroductionModule />} />
-        <Route path="learn/values" element={<ValuesModule />} />
-        <Route path="learn/operations" element={<OperationsModule />} />
-        <Route path="learn/gradients" element={<GradientsModule />} />
-        <Route path="learn/neuron" element={<NeuronModule />} />
-        <Route path="learn/network" element={<NetworkModule />} />
-        <Route path="learn/training" element={<TrainingModule />} />
+        <Route path="learn/building-blocks" element={<BuildingBlocksModule />} />
+        <Route path="learn/making-predictions" element={<MakingPredictionsModule />} />
+        <Route path="learn/measuring-mistakes" element={<MeasuringMistakesModule />} />
+        <Route path="learn/finding-what-to-fix" element={<FindingWhatToFixModule />} />
+        <Route path="learn/making-adjustments" element={<MakingAdjustmentsModule />} />
+        <Route path="learn/putting-it-together" element={<PuttingItTogetherModule />} />
       </Route>
     </Routes>
   )
