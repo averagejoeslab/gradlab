@@ -728,11 +728,29 @@ export function BuildingBlocksModule() {
           </div>
         </div>
 
-        <div className="bg-flow-600/10 border border-flow-500/30 rounded-xl p-4">
+        <div className="bg-flow-600/10 border border-flow-500/30 rounded-xl p-4 mb-6">
           <p className="text-gray-300">
             <strong className="text-white">That's it!</strong> Multiply and add — you learned this in elementary school. 
             The power of neural networks comes from having <em>millions</em> of these simple calculations working together.
           </p>
+        </div>
+
+        {/* Takeaway formula */}
+        <div className="bg-void-900 rounded-xl p-6 border border-white/10">
+          <div className="text-center">
+            <div className="text-gray-500 text-sm mb-3 uppercase tracking-wide">The Neuron Formula</div>
+            <div className="text-xl md:text-2xl text-white font-mono mb-4">
+              <span className="text-grad-400">output</span> = 
+              (<span className="text-flow-400">x₁</span> × <span className="text-accent-violet">w₁</span>) + 
+              (<span className="text-flow-400">x₂</span> × <span className="text-accent-violet">w₂</span>) + 
+              <span className="text-gray-400">b</span>
+            </div>
+            <div className="flex flex-wrap justify-center gap-4 text-sm">
+              <span><span className="text-flow-400 font-mono">x</span> <span className="text-gray-500">= inputs</span></span>
+              <span><span className="text-accent-violet font-mono">w</span> <span className="text-gray-500">= weights</span></span>
+              <span><span className="text-gray-400 font-mono">b</span> <span className="text-gray-500">= bias</span></span>
+            </div>
+          </div>
         </div>
       </StepContent>
 
