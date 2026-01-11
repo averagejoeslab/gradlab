@@ -595,45 +595,135 @@ export function BuildingBlocksModule() {
           Now that you understand what each part does, here's the simple calculation a neuron performs:
         </p>
 
-        <div className="space-y-4 mb-6">
-          <div className="flex items-start gap-4 p-4 rounded-xl bg-void-800/50">
-            <div className="w-8 h-8 rounded-full bg-flow-600/30 flex items-center justify-center text-flow-400 font-medium shrink-0">1</div>
-            <div>
-              <div className="font-medium text-white">Multiply each input by its weight</div>
-              <div className="text-sm text-gray-400">This scales each input by how important it is</div>
-            </div>
-          </div>
-          <div className="flex items-start gap-4 p-4 rounded-xl bg-void-800/50">
-            <div className="w-8 h-8 rounded-full bg-accent-emerald/30 flex items-center justify-center text-accent-emerald font-medium shrink-0">2</div>
-            <div>
-              <div className="font-medium text-white">Add all the results together</div>
-              <div className="text-sm text-gray-400">Combine all the weighted information into one number</div>
-            </div>
-          </div>
-          <div className="flex items-start gap-4 p-4 rounded-xl bg-void-800/50">
-            <div className="w-8 h-8 rounded-full bg-gray-500/30 flex items-center justify-center text-gray-400 font-medium shrink-0">3</div>
-            <div>
-              <div className="font-medium text-white">Add the bias</div>
-              <div className="text-sm text-gray-400">Shift the result up or down by the default tendency</div>
-            </div>
-          </div>
+        {/* Visual neuron with math annotations */}
+        <div className="flex items-center justify-center my-8">
+          <svg viewBox="0 0 500 240" className="w-full max-w-xl">
+            {/* Input 1 */}
+            <motion.g
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 }}
+            >
+              <circle cx="50" cy="70" r="30" className="fill-flow-600/30 stroke-flow-500" strokeWidth="2" />
+              <text x="50" y="65" textAnchor="middle" className="fill-gray-400 text-xs">input₁</text>
+              <text x="50" y="82" textAnchor="middle" className="fill-flow-400 text-lg font-mono font-bold">2</text>
+            </motion.g>
+
+            {/* Input 2 */}
+            <motion.g
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              <circle cx="50" cy="170" r="30" className="fill-flow-600/30 stroke-flow-500" strokeWidth="2" />
+              <text x="50" y="165" textAnchor="middle" className="fill-gray-400 text-xs">input₂</text>
+              <text x="50" y="182" textAnchor="middle" className="fill-flow-400 text-lg font-mono font-bold">3</text>
+            </motion.g>
+
+            {/* Connection line 1 with weight */}
+            <motion.g
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              <line x1="80" y1="70" x2="200" y2="105" stroke="#8b5cf6" strokeWidth="3" />
+              <rect x="115" y="60" width="50" height="26" rx="6" className="fill-accent-violet/40 stroke-accent-violet" strokeWidth="1" />
+              <text x="140" y="71" textAnchor="middle" className="fill-gray-400 text-[10px]">×weight</text>
+              <text x="140" y="82" textAnchor="middle" className="fill-accent-violet text-sm font-mono font-bold">×0.5</text>
+            </motion.g>
+
+            {/* Connection line 2 with weight */}
+            <motion.g
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+            >
+              <line x1="80" y1="170" x2="200" y2="135" stroke="#8b5cf6" strokeWidth="3" />
+              <rect x="115" y="154" width="50" height="26" rx="6" className="fill-accent-violet/40 stroke-accent-violet" strokeWidth="1" />
+              <text x="140" y="165" textAnchor="middle" className="fill-gray-400 text-[10px]">×weight</text>
+              <text x="140" y="176" textAnchor="middle" className="fill-accent-violet text-sm font-mono font-bold">×0.5</text>
+            </motion.g>
+
+            {/* Multiplication results flowing in */}
+            <motion.g
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              <text x="180" y="95" textAnchor="middle" className="fill-gray-500 text-xs">= 1.0</text>
+              <text x="180" y="160" textAnchor="middle" className="fill-gray-500 text-xs">= 1.5</text>
+            </motion.g>
+
+            {/* Neuron body (sum + bias) */}
+            <motion.g
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.6, type: "spring" }}
+              style={{ transformOrigin: '250px 120px' }}
+            >
+              <circle cx="250" cy="120" r="50" className="fill-accent-cyan/20 stroke-accent-cyan" strokeWidth="3" />
+              <text x="250" y="100" textAnchor="middle" className="fill-gray-400 text-xs">sum + bias</text>
+              <text x="250" y="120" textAnchor="middle" className="fill-white text-sm">1.0 + 1.5 + 0</text>
+              <text x="250" y="142" textAnchor="middle" className="fill-accent-cyan text-lg font-mono font-bold">= 2.5</text>
+            </motion.g>
+
+            {/* Bias annotation */}
+            <motion.g
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.7 }}
+            >
+              <line x1="250" y1="175" x2="250" y2="200" stroke="#6b7280" strokeWidth="2" strokeDasharray="4" />
+              <rect x="215" y="200" width="70" height="24" rx="6" className="fill-gray-600/30 stroke-gray-500" strokeWidth="1" />
+              <text x="250" y="216" textAnchor="middle" className="fill-gray-400 text-xs font-mono">bias = 0</text>
+            </motion.g>
+
+            {/* Output arrow */}
+            <motion.g
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+            >
+              <line x1="300" y1="120" x2="380" y2="120" stroke="#f97316" strokeWidth="4" />
+              <polygon points="380,112 400,120 380,128" className="fill-grad-500" />
+            </motion.g>
+
+            {/* Output */}
+            <motion.g
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.9 }}
+            >
+              <circle cx="440" cy="120" r="35" className="fill-grad-600/30 stroke-grad-500" strokeWidth="2" />
+              <text x="440" y="112" textAnchor="middle" className="fill-gray-400 text-xs">output</text>
+              <text x="440" y="134" textAnchor="middle" className="fill-grad-400 text-xl font-mono font-bold">2.5</text>
+            </motion.g>
+          </svg>
         </div>
-        
-        <div className="bg-void-800 rounded-xl p-6 mb-6">
-          <div className="text-center mb-4">
-            <div className="text-gray-400 mb-3">Written as a formula:</div>
-            <div className="text-lg text-white font-mono">
-              (<span className="text-flow-400">input₁</span> × <span className="text-accent-violet">weight₁</span>) + 
-              (<span className="text-flow-400">input₂</span> × <span className="text-accent-violet">weight₂</span>) + 
-              <span className="text-gray-400">bias</span> = <span className="text-grad-400">output</span>
+
+        {/* Step-by-step breakdown */}
+        <div className="space-y-3 mb-6">
+          <div className="flex items-center gap-3 p-3 rounded-lg bg-void-800/50">
+            <div className="w-7 h-7 rounded-full bg-flow-600/30 flex items-center justify-center text-flow-400 font-medium text-sm shrink-0">1</div>
+            <div className="text-sm">
+              <span className="text-gray-400">Multiply each input by its weight:</span>
+              <span className="font-mono ml-2"><span className="text-flow-400">2</span> × <span className="text-accent-violet">0.5</span> = 1.0</span>
+              <span className="mx-2 text-gray-600">and</span>
+              <span className="font-mono"><span className="text-flow-400">3</span> × <span className="text-accent-violet">0.5</span> = 1.5</span>
             </div>
           </div>
-          <div className="text-center">
-            <div className="text-gray-500 text-sm mb-2">With real numbers:</div>
-            <div className="text-white font-mono">
-              (<span className="text-flow-400">2</span> × <span className="text-accent-violet">0.5</span>) + 
-              (<span className="text-flow-400">3</span> × <span className="text-accent-violet">0.5</span>) + 
-              <span className="text-gray-400">0</span> = <span className="text-grad-400">2.5</span>
+          <div className="flex items-center gap-3 p-3 rounded-lg bg-void-800/50">
+            <div className="w-7 h-7 rounded-full bg-accent-emerald/30 flex items-center justify-center text-accent-emerald font-medium text-sm shrink-0">2</div>
+            <div className="text-sm">
+              <span className="text-gray-400">Add them together:</span>
+              <span className="font-mono ml-2 text-white">1.0 + 1.5 = 2.5</span>
+            </div>
+          </div>
+          <div className="flex items-center gap-3 p-3 rounded-lg bg-void-800/50">
+            <div className="w-7 h-7 rounded-full bg-gray-500/30 flex items-center justify-center text-gray-400 font-medium text-sm shrink-0">3</div>
+            <div className="text-sm">
+              <span className="text-gray-400">Add the bias:</span>
+              <span className="font-mono ml-2 text-white">2.5 + <span className="text-gray-500">0</span> = <span className="text-grad-400">2.5</span></span>
             </div>
           </div>
         </div>
