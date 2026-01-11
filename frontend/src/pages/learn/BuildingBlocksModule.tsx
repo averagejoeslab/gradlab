@@ -5,7 +5,7 @@ import { ModuleShell, StepContent } from '../../components/learn'
 
 export function BuildingBlocksModule() {
   const [step, setStep] = useState(0)
-  const [inputs] = useState([2, 3])
+  const [inputs, setInputs] = useState([2, 3])
   const [weights, setWeights] = useState([0.5, 0.5])
   const [bias, setBias] = useState(0)
   
@@ -759,96 +759,155 @@ export function BuildingBlocksModule() {
           Try it yourself
         </h2>
         <p className="text-gray-300 mb-6 leading-relaxed">
-          Adjust the <span className="text-accent-violet">weights</span> and <span className="text-gray-400">bias</span> to see 
-          how they change the neuron's output. The inputs are fixed at <span className="text-flow-400">2</span> and <span className="text-flow-400">3</span>.
+          Adjust the <span className="text-flow-400">inputs</span>, <span className="text-accent-violet">weights</span>, and <span className="text-gray-400">bias</span> to 
+          see how they affect the neuron's <span className="text-grad-400">output</span>.
         </p>
 
         {/* Neuron visualization */}
-        <div className="flex items-center justify-center gap-6 my-8">
+        <div className="flex items-center justify-center gap-4 md:gap-6 my-8">
           {/* Inputs */}
           <div className="flex flex-col gap-4">
             {inputs.map((x, i) => (
-              <div key={i} className="flex items-center gap-3">
-                <div className="w-16 h-16 rounded-xl bg-flow-600/20 border-2 border-flow-500/50 
-                             flex flex-col items-center justify-center">
-                  <div className="text-xs text-gray-500">input {i + 1}</div>
-                  <div className="font-mono text-white">{x}</div>
-                </div>
-                <div className="font-mono text-sm text-accent-violet">×{weights[i].toFixed(1)}</div>
+              <div key={i} className="flex items-center gap-2 md:gap-3">
+                <motion.div 
+                  key={`input-${i}-${x}`}
+                  initial={{ scale: 0.95 }}
+                  animate={{ scale: 1 }}
+                  className="w-14 h-14 md:w-16 md:h-16 rounded-xl bg-flow-600/20 border-2 border-flow-500/50 
+                             flex flex-col items-center justify-center"
+                >
+                  <div className="text-[10px] md:text-xs text-gray-500">input {i + 1}</div>
+                  <div className="font-mono text-white text-sm md:text-base">{x.toFixed(1)}</div>
+                </motion.div>
+                <div className="font-mono text-xs md:text-sm text-accent-violet">×{weights[i].toFixed(1)}</div>
               </div>
             ))}
           </div>
 
+          {/* Arrow */}
+          <div className="text-gray-600">→</div>
+
           {/* Sum */}
           <div className="flex flex-col items-center">
-            <div className="w-16 h-16 rounded-full bg-accent-cyan/20 border-2 border-accent-cyan 
-                         flex items-center justify-center text-xl text-gray-300">
+            <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-accent-cyan/20 border-2 border-accent-cyan 
+                         flex items-center justify-center text-lg md:text-xl text-gray-300">
               Σ
             </div>
-            <div className="mt-2 text-sm text-gray-500">+{bias.toFixed(1)}</div>
+            <div className="mt-1 text-xs md:text-sm text-gray-500">+{bias.toFixed(1)}</div>
           </div>
+
+          {/* Arrow */}
+          <div className="text-gray-600">→</div>
 
           {/* Output */}
           <motion.div
             key={computation.output}
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
-            className="w-20 h-20 rounded-xl bg-grad-600/20 border-2 border-grad-500/50 
+            className="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-grad-600/20 border-2 border-grad-500/50 
                      flex flex-col items-center justify-center"
           >
-            <div className="text-xs text-gray-500">output</div>
-            <div className="text-2xl font-mono text-white">{computation.output.toFixed(1)}</div>
+            <div className="text-[10px] md:text-xs text-gray-500">output</div>
+            <div className="text-xl md:text-2xl font-mono text-grad-400">{computation.output.toFixed(1)}</div>
           </motion.div>
         </div>
 
+        {/* Live formula */}
+        <div className="bg-void-800/50 rounded-lg p-3 mb-6 text-center">
+          <span className="text-sm font-mono">
+            (<span className="text-flow-400">{inputs[0].toFixed(1)}</span> × <span className="text-accent-violet">{weights[0].toFixed(1)}</span>) + 
+            (<span className="text-flow-400">{inputs[1].toFixed(1)}</span> × <span className="text-accent-violet">{weights[1].toFixed(1)}</span>) + 
+            <span className="text-gray-400">{bias.toFixed(1)}</span> = <span className="text-grad-400">{computation.output.toFixed(1)}</span>
+          </span>
+        </div>
+
         {/* Controls */}
-        <div className="grid grid-cols-3 gap-6">
-          <div>
-            <label className="text-sm text-gray-400 mb-2 block">Weight 1</label>
-            <input
-              type="range"
-              min="-2"
-              max="2"
-              step="0.1"
-              value={weights[0]}
-              onChange={(e) => setWeights([parseFloat(e.target.value), weights[1]])}
-              className="w-full accent-accent-violet"
-            />
-            <div className="text-center font-mono text-accent-violet">{weights[0].toFixed(1)}</div>
+        <div className="space-y-4">
+          {/* Inputs row */}
+          <div className="grid grid-cols-2 gap-4">
+            <div className="p-3 rounded-lg bg-flow-600/10 border border-flow-500/20">
+              <label className="text-sm text-flow-400 mb-2 block font-medium">Input 1</label>
+              <input
+                type="range"
+                min="0"
+                max="10"
+                step="0.5"
+                value={inputs[0]}
+                onChange={(e) => setInputs([parseFloat(e.target.value), inputs[1]])}
+                className="w-full accent-flow-500"
+              />
+              <div className="text-center font-mono text-flow-400 text-lg">{inputs[0].toFixed(1)}</div>
+            </div>
+            <div className="p-3 rounded-lg bg-flow-600/10 border border-flow-500/20">
+              <label className="text-sm text-flow-400 mb-2 block font-medium">Input 2</label>
+              <input
+                type="range"
+                min="0"
+                max="10"
+                step="0.5"
+                value={inputs[1]}
+                onChange={(e) => setInputs([inputs[0], parseFloat(e.target.value)])}
+                className="w-full accent-flow-500"
+              />
+              <div className="text-center font-mono text-flow-400 text-lg">{inputs[1].toFixed(1)}</div>
+            </div>
           </div>
-          <div>
-            <label className="text-sm text-gray-400 mb-2 block">Weight 2</label>
-            <input
-              type="range"
-              min="-2"
-              max="2"
-              step="0.1"
-              value={weights[1]}
-              onChange={(e) => setWeights([weights[0], parseFloat(e.target.value)])}
-              className="w-full accent-accent-violet"
-            />
-            <div className="text-center font-mono text-accent-violet">{weights[1].toFixed(1)}</div>
+
+          {/* Weights row */}
+          <div className="grid grid-cols-2 gap-4">
+            <div className="p-3 rounded-lg bg-accent-violet/10 border border-accent-violet/20">
+              <label className="text-sm text-accent-violet mb-2 block font-medium">Weight 1</label>
+              <input
+                type="range"
+                min="-2"
+                max="2"
+                step="0.1"
+                value={weights[0]}
+                onChange={(e) => setWeights([parseFloat(e.target.value), weights[1]])}
+                className="w-full accent-accent-violet"
+              />
+              <div className="text-center font-mono text-accent-violet text-lg">{weights[0].toFixed(1)}</div>
+            </div>
+            <div className="p-3 rounded-lg bg-accent-violet/10 border border-accent-violet/20">
+              <label className="text-sm text-accent-violet mb-2 block font-medium">Weight 2</label>
+              <input
+                type="range"
+                min="-2"
+                max="2"
+                step="0.1"
+                value={weights[1]}
+                onChange={(e) => setWeights([weights[0], parseFloat(e.target.value)])}
+                className="w-full accent-accent-violet"
+              />
+              <div className="text-center font-mono text-accent-violet text-lg">{weights[1].toFixed(1)}</div>
+            </div>
           </div>
-          <div>
-            <label className="text-sm text-gray-400 mb-2 block">Bias</label>
+
+          {/* Bias row */}
+          <div className="p-3 rounded-lg bg-gray-600/10 border border-gray-500/20">
+            <label className="text-sm text-gray-400 mb-2 block font-medium">Bias</label>
             <input
               type="range"
-              min="-2"
-              max="2"
+              min="-5"
+              max="5"
               step="0.1"
               value={bias}
               onChange={(e) => setBias(parseFloat(e.target.value))}
               className="w-full accent-gray-400"
             />
-            <div className="text-center font-mono text-gray-400">{bias.toFixed(1)}</div>
+            <div className="text-center font-mono text-gray-400 text-lg">{bias.toFixed(1)}</div>
           </div>
         </div>
 
-        <div className="mt-6 p-4 rounded-xl bg-flow-600/10 border border-flow-500/30">
+        <div className="mt-6 p-4 rounded-xl bg-accent-cyan/10 border border-accent-cyan/30">
           <p className="text-sm text-gray-300">
-            💡 <strong>Try this:</strong> Make weight 1 negative. Now increasing input 1 actually 
-            <em>decreases</em> the output. Weights can flip the direction of influence!
+            💡 <strong className="text-white">Experiments to try:</strong>
           </p>
+          <ul className="text-sm text-gray-400 mt-2 space-y-1">
+            <li>• Set a weight to <span className="text-accent-violet font-mono">0</span> — that input gets ignored!</li>
+            <li>• Make a weight <span className="text-accent-violet font-mono">negative</span> — higher inputs decrease the output</li>
+            <li>• Use <span className="text-gray-300 font-mono">bias</span> to shift all outputs up or down</li>
+          </ul>
         </div>
       </StepContent>
 
