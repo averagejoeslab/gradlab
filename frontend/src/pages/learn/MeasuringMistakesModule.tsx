@@ -235,30 +235,31 @@ export function MeasuringMistakesModule() {
         </p>
 
         <div className="flex items-center justify-center my-8">
-          <svg viewBox="0 0 300 120" className="w-full max-w-md">
-            {/* Loss landscape */}
+          <svg viewBox="0 0 300 140" className="w-full max-w-md">
+            {/* Loss landscape - bowl/valley shape */}
             <path
-              d="M 20 80 Q 80 100 150 40 Q 220 10 280 60"
+              d="M 20 30 Q 60 30 100 60 Q 150 100 200 60 Q 240 30 280 30"
               fill="none"
               stroke="#374151"
               strokeWidth="3"
             />
             
-            {/* Minimum marker */}
-            <circle cx="200" cy="22" r="6" className="fill-accent-emerald" />
-            <text x="200" y="50" textAnchor="middle" className="fill-accent-emerald text-xs">goal: minimum loss</text>
+            {/* Starting point - high on the hill (left side) */}
+            <circle cx="70" cy="38" r="8" className="fill-accent-rose" />
+            <text x="70" y="25" textAnchor="middle" className="fill-accent-rose text-xs">starting point</text>
+            <text x="70" y="60" textAnchor="middle" className="fill-gray-500 text-[10px]">(high loss)</text>
             
-            {/* Current position */}
-            <circle cx="60" cy="90" r="8" className="fill-accent-rose" />
-            <text x="60" y="110" textAnchor="middle" className="fill-accent-rose text-xs">starting point</text>
+            {/* Minimum marker - at the bottom of the valley */}
+            <circle cx="150" cy="100" r="6" className="fill-accent-emerald" />
+            <text x="150" y="120" textAnchor="middle" className="fill-accent-emerald text-xs">goal: minimum loss</text>
 
-            {/* Arrow */}
+            {/* Arrow showing descent */}
             <defs>
               <marker id="arrowhead2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
                 <polygon points="0 0, 10 3.5, 0 7" fill="#6b7280" />
               </marker>
             </defs>
-            <line x1="80" y1="85" x2="170" y2="40" stroke="#6b7280" strokeWidth="1" strokeDasharray="5,5" markerEnd="url(#arrowhead2)" />
+            <path d="M 85 45 Q 110 65 135 90" stroke="#6b7280" strokeWidth="1.5" strokeDasharray="5,5" fill="none" markerEnd="url(#arrowhead2)" />
           </svg>
         </div>
 
