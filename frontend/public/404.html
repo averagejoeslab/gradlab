@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Redirecting...</title>
+    <script>
+      // Single Page App GitHub Pages redirect hack
+      // This script saves the current path to sessionStorage and redirects to the root
+      // The main index.html will then restore the path and let React Router handle it
+      
+      // Get the current path (everything after the repo name)
+      const segmentCount = 1; // micrograd-playground is 1 segment
+      const path = window.location.pathname
+        .split('/')
+        .slice(segmentCount + 1)
+        .join('/');
+      
+      // Save the path and any search params/hash
+      const redirect = path + window.location.search + window.location.hash;
+      
+      if (redirect) {
+        sessionStorage.setItem('spa-redirect', redirect);
+      }
+      
+      // Redirect to the base URL
+      window.location.replace('/micrograd-playground/');
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <meta http-equiv="refresh" content="0;url=/micrograd-playground/" />
+    </noscript>
+  </body>
+</html>
+

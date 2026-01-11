@@ -3,6 +3,7 @@ import { Layout } from './components/Layout'
 import { HomePage } from './pages/HomePage'
 import { PlaygroundPage } from './pages/PlaygroundPage'
 import { LearnPage } from './pages/LearnPage'
+import { NotFoundPage } from './pages/NotFoundPage'
 import { IntroductionModule } from './pages/learn/IntroductionModule'
 import { BuildingBlocksModule } from './pages/learn/BuildingBlocksModule'
 import { MakingPredictionsModule } from './pages/learn/MakingPredictionsModule'
@@ -25,6 +26,8 @@ export default function App() {
         <Route path="learn/finding-what-to-fix" element={<FindingWhatToFixModule />} />
         <Route path="learn/making-adjustments" element={<MakingAdjustmentsModule />} />
         <Route path="learn/putting-it-together" element={<PuttingItTogetherModule />} />
+        {/* Catch-all route for 404 pages */}
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
   )
