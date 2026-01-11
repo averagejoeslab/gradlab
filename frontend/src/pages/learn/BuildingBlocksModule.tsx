@@ -5,8 +5,8 @@ import { ModuleShell, StepContent } from '../../components/learn'
 
 export function BuildingBlocksModule() {
   const [step, setStep] = useState(0)
-  const [inputs, setInputs] = useState([2, 3])
-  const [weights, setWeights] = useState([0.5, 0.5])
+  const [inputs, setInputs] = useState([0, 0])
+  const [weights, setWeights] = useState([0, 0])
   const [bias, setBias] = useState(0)
   
   // Pulsing animation phase for biological neuron (0=dendrites, 1=cell body, 2=axon)
@@ -829,9 +829,9 @@ export function BuildingBlocksModule() {
               <label className="text-sm text-flow-400 mb-2 block font-medium">Input 1</label>
               <input
                 type="range"
-                min="0"
-                max="10"
-                step="0.5"
+                min="-5"
+                max="5"
+                step="0.1"
                 value={inputs[0]}
                 onChange={(e) => setInputs([parseFloat(e.target.value), inputs[1]])}
                 className="w-full accent-flow-500"
@@ -842,9 +842,9 @@ export function BuildingBlocksModule() {
               <label className="text-sm text-flow-400 mb-2 block font-medium">Input 2</label>
               <input
                 type="range"
-                min="0"
-                max="10"
-                step="0.5"
+                min="-5"
+                max="5"
+                step="0.1"
                 value={inputs[1]}
                 onChange={(e) => setInputs([inputs[0], parseFloat(e.target.value)])}
                 className="w-full accent-flow-500"
@@ -859,8 +859,8 @@ export function BuildingBlocksModule() {
               <label className="text-sm text-accent-violet mb-2 block font-medium">Weight 1</label>
               <input
                 type="range"
-                min="-2"
-                max="2"
+                min="-5"
+                max="5"
                 step="0.1"
                 value={weights[0]}
                 onChange={(e) => setWeights([parseFloat(e.target.value), weights[1]])}
@@ -872,8 +872,8 @@ export function BuildingBlocksModule() {
               <label className="text-sm text-accent-violet mb-2 block font-medium">Weight 2</label>
               <input
                 type="range"
-                min="-2"
-                max="2"
+                min="-5"
+                max="5"
                 step="0.1"
                 value={weights[1]}
                 onChange={(e) => setWeights([weights[0], parseFloat(e.target.value)])}
