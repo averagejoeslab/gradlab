@@ -85,7 +85,7 @@ export function MakingPredictionsModule() {
         </p>
 
         <div className="flex items-center justify-center my-8">
-          <svg viewBox="0 0 400 100" className="w-full max-w-lg">
+          <svg viewBox="0 0 440 100" className="w-full max-w-lg">
             {/* Flow arrow */}
             <defs>
               <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
@@ -133,7 +133,7 @@ export function MakingPredictionsModule() {
             </motion.g>
 
             {/* Label */}
-            <text x="210" y="90" textAnchor="middle" className="fill-flow-400 text-xs">forward pass →</text>
+            <text x="220" y="90" textAnchor="middle" className="fill-flow-400 text-xs">forward pass →</text>
           </svg>
         </div>
 
