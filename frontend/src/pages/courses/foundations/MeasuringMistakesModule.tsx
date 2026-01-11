@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Check, HelpCircle } from 'lucide-react'
-import { ModuleShell, StepContent } from '../../components/learn'
+import { ModuleShell, StepContent } from '../../../components/learn'
 
 export function MeasuringMistakesModule() {
   const [step, setStep] = useState(0)
@@ -12,6 +12,7 @@ export function MeasuringMistakesModule() {
 
   return (
     <ModuleShell
+      courseId="foundations"
       title="Measuring Mistakes"
       subtitle="How we know when we're wrong"
       moduleId="measuring-mistakes"
@@ -19,8 +20,6 @@ export function MeasuringMistakesModule() {
       currentStep={step}
       onStepChange={setStep}
       progressColor="rose"
-      nextPath="/learn/finding-what-to-fix"
-      nextLabel="Continue to Finding What to Fix"
     >
       {/* Vocabulary reminder */}
       <div className="mb-6 p-3 rounded-lg bg-void-800/30 border border-white/5 flex items-center gap-3 -mt-2">
@@ -349,3 +348,4 @@ export function MeasuringMistakesModule() {
     </ModuleShell>
   )
 }
+

@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { BookOpen, RefreshCw } from 'lucide-react'
-import { ModuleShell, StepContent } from '../../components/learn'
+import { ModuleShell, StepContent } from '../../../components/learn'
 
 export function IntroductionModule() {
   const [step, setStep] = useState(0)
 
   return (
     <ModuleShell
+      courseId="foundations"
       title="Introduction"
       subtitle="What is a neural network?"
       moduleId="introduction"
@@ -14,8 +15,6 @@ export function IntroductionModule() {
       currentStep={step}
       onStepChange={setStep}
       progressColor="flow"
-      nextPath="/learn/building-blocks"
-      nextLabel="Continue to Building Blocks"
     >
       <StepContent step={0} currentStep={step}>
         <h2 className="text-2xl font-semibold text-white mb-6">
@@ -306,3 +305,4 @@ export function IntroductionModule() {
     </ModuleShell>
   )
 }
+

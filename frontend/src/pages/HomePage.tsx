@@ -72,7 +72,7 @@ export function HomePage() {
 
             {/* CTAs */}
             <div className="flex items-center justify-center gap-4">
-              <Link to="/learn" className="btn-primary flex items-center gap-2 text-lg">
+              <Link to="/courses" className="btn-primary flex items-center gap-2 text-lg">
                 <GraduationCap className="w-5 h-5" />
                 Start Learning
                 <ArrowRight className="w-5 h-5" />

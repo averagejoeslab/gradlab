@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Check, HelpCircle } from 'lucide-react'
-import { ModuleShell, StepContent } from '../../components/learn'
+import { ModuleShell, StepContent } from '../../../components/learn'
 
 export function MakingAdjustmentsModule() {
   const [step, setStep] = useState(0)
@@ -13,6 +13,7 @@ export function MakingAdjustmentsModule() {
 
   return (
     <ModuleShell
+      courseId="foundations"
       title="Making Adjustments"
       subtitle="Actually improving the network"
       moduleId="making-adjustments"
@@ -20,8 +21,6 @@ export function MakingAdjustmentsModule() {
       currentStep={step}
       onStepChange={setStep}
       progressColor="emerald"
-      nextPath="/learn/putting-it-together"
-      nextLabel="Continue to Putting It Together"
     >
       {/* Vocabulary reminder */}
       <div className="mb-6 p-3 rounded-lg bg-void-800/30 border border-white/5 flex items-center gap-3 -mt-2">
@@ -362,3 +361,4 @@ export function MakingAdjustmentsModule() {
     </ModuleShell>
   )
 }
+

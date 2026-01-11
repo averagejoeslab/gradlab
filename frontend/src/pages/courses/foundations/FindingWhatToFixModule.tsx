@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { Check, HelpCircle, Play } from 'lucide-react'
-import { ModuleShell, StepContent } from '../../components/learn'
+import { ModuleShell, StepContent } from '../../../components/learn'
 
 export function FindingWhatToFixModule() {
   const [step, setStep] = useState(0)
@@ -21,15 +21,14 @@ export function FindingWhatToFixModule() {
 
   return (
     <ModuleShell
+      courseId="foundations"
       title="Finding What to Fix"
       subtitle="Tracing back to find the problem"
       moduleId="finding-what-to-fix"
       totalSteps={7}
       currentStep={step}
       onStepChange={setStep}
-      progressColor="grad"
-      nextPath="/learn/making-adjustments"
-      nextLabel="Continue to Making Adjustments"
+      progressColor="orange"
     >
       {/* Vocabulary reminder */}
       <div className="mb-6 p-3 rounded-lg bg-void-800/30 border border-white/5 flex items-center gap-3 -mt-2">
@@ -460,3 +459,4 @@ export function FindingWhatToFixModule() {
     </ModuleShell>
   )
 }
+

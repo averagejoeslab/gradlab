@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Check, HelpCircle } from 'lucide-react'
-import { ModuleShell, StepContent } from '../../components/learn'
+import { ModuleShell, StepContent } from '../../../components/learn'
 
 export function BuildingBlocksModule() {
   const [step, setStep] = useState(0)
@@ -30,6 +30,7 @@ export function BuildingBlocksModule() {
 
   return (
     <ModuleShell
+      courseId="foundations"
       title="Building Blocks"
       subtitle="The parts of a neural network"
       moduleId="building-blocks"
@@ -37,8 +38,6 @@ export function BuildingBlocksModule() {
       currentStep={step}
       onStepChange={setStep}
       progressColor="cyan"
-      nextPath="/learn/making-predictions"
-      nextLabel="Continue to Making Predictions"
     >
       {/* Vocabulary reminder - shown above content */}
       <div className="mb-6 p-3 rounded-lg bg-void-800/30 border border-white/5 flex items-center gap-3 -mt-2">
@@ -1214,3 +1213,4 @@ export function BuildingBlocksModule() {
     </ModuleShell>
   )
 }
+

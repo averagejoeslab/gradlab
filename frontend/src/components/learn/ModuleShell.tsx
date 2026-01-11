@@ -2,18 +2,19 @@ import { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react'
 import { useStore } from '../../store/useStore'
-
-// Color mapping for progress bar and accents
-const colorClasses: Record<string, string> = {
-  flow: 'bg-flow-500',
-  cyan: 'bg-accent-cyan',
-  violet: 'bg-accent-violet',
-  rose: 'bg-accent-rose',
-  emerald: 'bg-accent-emerald',
-  grad: 'bg-grad-500',
-}
+import { 
+  getCourseById, 
+  getNextModule, 
+  isLastModule, 
+  getModuleUrl, 
+  getCourseUrl,
+  progressColorClasses,
+  ModuleColor
+} from '../../data/courses'
 
 export interface ModuleShellProps {
+  /** Unique course ID this module belongs to */
+  courseId: string
   /** Module title displayed in the header */
   title: string
   /** Subtitle/description displayed under the title */
@@ -27,13 +28,7 @@ export interface ModuleShellProps {
   /** Callback when step changes */
   onStepChange: (step: number) => void
   /** Color theme for progress bar (default: 'flow') */
-  progressColor?: keyof typeof colorClasses
-  /** Path to navigate to on completion */
-  nextPath: string
-  /** Label for the completion button */
-  nextLabel: string
-  /** Whether this is the final module (shows "Complete Journey" instead of "Continue to...") */
-  isFinalModule?: boolean
+  progressColor?: ModuleColor
   /** The step content to render */
   children: ReactNode
 }
@@ -47,9 +42,13 @@ export interface ModuleShellProps {
  * - Content card
  * - Navigation (Previous/Next buttons)
  * 
+ * Now course-aware - automatically handles navigation to next module
+ * and back to course page based on the courseId.
+ * 
  * @example
  * ```tsx
  * <ModuleShell
+ *   courseId="foundations"
  *   title="Introduction"
  *   subtitle="What is a neural network?"
  *   moduleId="introduction"
@@ -57,8 +56,6 @@ export interface ModuleShellProps {
  *   currentStep={step}
  *   onStepChange={setStep}
  *   progressColor="flow"
- *   nextPath="/learn/building-blocks"
- *   nextLabel="Continue to Building Blocks"
  * >
  *   <StepContent step={0} currentStep={step}>
  *     {/* Step 0 content *\/}
@@ -70,6 +67,7 @@ export interface ModuleShellProps {
  * ```
  */
 export function ModuleShell({
+  courseId,
   title,
   subtitle,
   moduleId,
@@ -77,15 +75,26 @@ export function ModuleShell({
   currentStep,
   onStepChange,
   progressColor = 'flow',
-  nextPath,
-  nextLabel,
-  isFinalModule = false,
   children,
 }: ModuleShellProps) {
   const { markModuleComplete } = useStore()
+  
+  // Get course and navigation info
+  const course = getCourseById(courseId)
+  const nextModule = getNextModule(courseId, moduleId)
+  const isFinalModule = isLastModule(courseId, moduleId)
+  
+  // Determine navigation targets
+  const backPath = getCourseUrl(courseId)
+  const nextPath = nextModule 
+    ? getModuleUrl(courseId, nextModule.id)
+    : getCourseUrl(courseId)
+  const nextLabel = isFinalModule 
+    ? 'Complete Course' 
+    : `Continue to ${nextModule?.title || 'Next'}`
 
   const handleComplete = () => {
-    markModuleComplete(moduleId)
+    markModuleComplete(courseId, moduleId)
   }
 
   const handlePrevious = () => {
@@ -96,15 +105,16 @@ export function ModuleShell({
     onStepChange(currentStep + 1)
   }
 
-  const progressColorClass = colorClasses[progressColor] || colorClasses.flow
+  const progressColorClass = progressColorClasses[progressColor] || progressColorClasses.flow
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">
       {/* Header */}
       <div className="flex items-center gap-4 mb-8">
         <Link
-          to="/learn"
+          to={backPath}
           className="p-2 rounded-lg hover:bg-white/5 text-gray-400 hover:text-white transition-colors"
+          title={`Back to ${course?.title || 'Course'}`}
         >
           <ArrowLeft className="w-5 h-5" />
         </Link>
@@ -164,4 +174,3 @@ export function ModuleShell({
     </div>
   )
 }
-

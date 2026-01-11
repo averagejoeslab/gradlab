@@ -9,7 +9,7 @@ import {
 
 const navItems = [
   { path: '/', icon: Home, label: 'Home' },
-  { path: '/learn', icon: GraduationCap, label: 'Learn' },
+  { path: '/courses', icon: GraduationCap, label: 'Learn' },
   { path: '/playground', icon: Boxes, label: 'Playground' },
 ]
 

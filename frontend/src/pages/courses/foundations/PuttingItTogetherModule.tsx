@@ -2,13 +2,14 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Check, Sparkles, RefreshCw } from 'lucide-react'
-import { ModuleShell, StepContent } from '../../components/learn'
+import { ModuleShell, StepContent } from '../../../components/learn'
 
 export function PuttingItTogetherModule() {
   const [step, setStep] = useState(0)
 
   return (
     <ModuleShell
+      courseId="foundations"
       title="Putting It Together"
       subtitle="The complete training loop"
       moduleId="putting-it-together"
@@ -16,9 +17,6 @@ export function PuttingItTogetherModule() {
       currentStep={step}
       onStepChange={setStep}
       progressColor="violet"
-      nextPath="/learn"
-      nextLabel="Complete Journey"
-      isFinalModule={true}
     >
       <StepContent step={0} currentStep={step}>
         <div className="flex items-center gap-3 mb-6">
@@ -331,3 +329,4 @@ export function PuttingItTogetherModule() {
     </ModuleShell>
   )
 }
+
