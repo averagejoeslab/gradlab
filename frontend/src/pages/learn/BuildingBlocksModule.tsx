@@ -90,8 +90,8 @@ export function BuildingBlocksModule() {
               <path d="M 30 40 Q 60 50 80 60" stroke="#6366f1" strokeWidth="3" fill="none" />
               <path d="M 20 80 Q 50 80 80 70" stroke="#6366f1" strokeWidth="3" fill="none" />
               <path d="M 30 120 Q 60 110 80 90" stroke="#6366f1" strokeWidth="3" fill="none" />
-              <text x="25" y="145" className="fill-flow-400 text-xs">dendrites</text>
-              <text x="25" y="157" className="fill-gray-500 text-[10px]">(receive signals)</text>
+              <text x="25" y="145" fill="#818cf8" className="text-xs">dendrites</text>
+              <text x="25" y="157" fill="#6366f1" opacity="0.6" className="text-[10px]">(receive signals)</text>
             </motion.g>
 
             {/* Cell body */}
@@ -101,8 +101,8 @@ export function BuildingBlocksModule() {
               transition={{ delay: 0.4, type: "spring" }}
             >
               <ellipse cx="120" cy="80" rx="45" ry="35" className="fill-accent-cyan/20 stroke-accent-cyan" strokeWidth="3" />
-              <text x="120" y="75" textAnchor="middle" className="fill-gray-400 text-xs">cell body</text>
-              <text x="120" y="90" textAnchor="middle" className="fill-gray-500 text-[10px]">(processes)</text>
+              <text x="120" y="75" textAnchor="middle" className="fill-accent-cyan/80 text-xs">cell body</text>
+              <text x="120" y="90" textAnchor="middle" className="fill-accent-cyan/50 text-[10px]">(processes)</text>
             </motion.g>
 
             {/* Axon (output) */}
@@ -112,27 +112,30 @@ export function BuildingBlocksModule() {
               transition={{ delay: 0.6 }}
             >
               <line x1="165" y1="80" x2="320" y2="80" stroke="#f97316" strokeWidth="4" />
-              <circle cx="340" cy="80" r="12" className="fill-grad-500/30 stroke-grad-500" strokeWidth="2" />
-              <circle cx="365" cy="65" r="8" className="fill-grad-500/30 stroke-grad-500" strokeWidth="2" />
-              <circle cx="365" cy="95" r="8" className="fill-grad-500/30 stroke-grad-500" strokeWidth="2" />
-              <text x="280" y="110" textAnchor="middle" className="fill-grad-400 text-xs">axon</text>
-              <text x="280" y="122" className="fill-gray-500 text-[10px]">(sends signal out)</text>
+              <circle cx="340" cy="80" r="12" fill="#f9731630" stroke="#f97316" strokeWidth="2" />
+              <circle cx="365" cy="65" r="8" fill="#f9731630" stroke="#f97316" strokeWidth="2" />
+              <circle cx="365" cy="95" r="8" fill="#f9731630" stroke="#f97316" strokeWidth="2" />
+              <text x="280" y="110" textAnchor="middle" fill="#fb923c" className="text-xs">axon</text>
+              <text x="280" y="122" fill="#f97316" opacity="0.6" className="text-[10px]">(sends signal out)</text>
             </motion.g>
           </svg>
         </div>
 
         <div className="grid md:grid-cols-3 gap-4 mb-6">
-          <div className="p-4 rounded-xl bg-flow-600/10 border border-flow-500/30 text-center">
-            <div className="text-flow-400 font-medium mb-1">Receives</div>
-            <div className="text-sm text-gray-400">Signals come in from other neurons</div>
+          <div className="p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-center">
+            <div className="text-indigo-400 font-medium mb-1">Dendrites</div>
+            <div className="text-xs text-indigo-400/60 mb-2">receive signals</div>
+            <div className="text-sm text-gray-400">Information flows in from other neurons</div>
           </div>
           <div className="p-4 rounded-xl bg-accent-cyan/10 border border-accent-cyan/30 text-center">
-            <div className="text-accent-cyan font-medium mb-1">Processes</div>
-            <div className="text-sm text-gray-400">Combines and transforms the signals</div>
+            <div className="text-accent-cyan font-medium mb-1">Cell Body</div>
+            <div className="text-xs text-accent-cyan/60 mb-2">processes</div>
+            <div className="text-sm text-gray-400">Combines and transforms all the signals</div>
           </div>
-          <div className="p-4 rounded-xl bg-grad-600/10 border border-grad-500/30 text-center">
-            <div className="text-grad-400 font-medium mb-1">Sends</div>
-            <div className="text-sm text-gray-400">Passes result to other neurons</div>
+          <div className="p-4 rounded-xl bg-orange-500/10 border border-orange-500/30 text-center">
+            <div className="text-orange-400 font-medium mb-1">Axon</div>
+            <div className="text-xs text-orange-400/60 mb-2">sends signal out</div>
+            <div className="text-sm text-gray-400">Passes the result to other neurons</div>
           </div>
         </div>
 

@@ -3,6 +3,9 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
+  // Set base path for GitHub Pages deployment
+  // The repo name becomes the base path: https://averagejoeslab.github.io/micrograd-playground/
+  base: '/micrograd-playground/',
   resolve: {
     alias: {
       '@': '/src',
