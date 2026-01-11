@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Check, HelpCircle } from 'lucide-react'
 import { ModuleShell, StepContent } from '../../components/learn'
@@ -8,6 +8,19 @@ export function BuildingBlocksModule() {
   const [inputs] = useState([2, 3])
   const [weights, setWeights] = useState([0.5, 0.5])
   const [bias, setBias] = useState(0)
+  
+  // Pulsing animation phase for biological neuron (0=dendrites, 1=cell body, 2=axon)
+  const [pulsePhase, setPulsePhase] = useState(0)
+  
+  useEffect(() => {
+    if (step !== 1) return // Only animate on step 1
+    
+    const interval = setInterval(() => {
+      setPulsePhase(prev => (prev + 1) % 3)
+    }, 1000) // 1 second per phase
+    
+    return () => clearInterval(interval)
+  }, [step])
 
   const computation = useMemo(() => {
     const weightedSum = inputs[0] * weights[0] + inputs[1] * weights[1] + bias
