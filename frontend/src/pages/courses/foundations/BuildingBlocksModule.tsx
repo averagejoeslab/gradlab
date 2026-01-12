@@ -1,11 +1,12 @@
 import { useState, useMemo, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Check, HelpCircle } from 'lucide-react'
-import { ModuleShell, StepContent, useCurrentStep } from '../../../components/learn'
+import { ModuleShell, StepContent } from '../../../components/learn'
+import { useModuleProgress } from '../../../store/useStore'
 
 export function BuildingBlocksModule() {
-  // Get current step from context (persisted in store)
-  const currentStep = useCurrentStep()
+  // Get current step directly from store (before ModuleShell renders)
+  const { currentStep } = useModuleProgress('foundations', 'building-blocks')
   
   const [inputs, setInputs] = useState([0, 0])
   const [weights, setWeights] = useState([0, 0])
