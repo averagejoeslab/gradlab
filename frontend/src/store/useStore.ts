@@ -248,7 +248,7 @@ export const useStore = create<AppState>()(
       showHints: true,
     }),
     {
-      name: 'micrograd-playground-storage',
+      name: 'gradlab-storage',
       version: 2, // Bumped version for migration
       
       // Migrate old data format to new format

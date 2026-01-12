@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Micrograd Playground</title>
+    <title>GradLab - Learn Neural Networks Visually</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@
         if (redirect) {
           sessionStorage.removeItem('spa-redirect');
           // Use history.replaceState to update the URL without reloading
-          const newUrl = window.location.origin + '/micrograd-playground/' + redirect;
+          const newUrl = window.location.origin + '/gradlab/' + redirect;
           window.history.replaceState(null, '', newUrl);
         }
       })();

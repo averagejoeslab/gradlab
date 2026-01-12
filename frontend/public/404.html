@@ -9,7 +9,7 @@
       // The main index.html will then restore the path and let React Router handle it
       
       // Get the current path (everything after the repo name)
-      const segmentCount = 1; // micrograd-playground is 1 segment
+      const segmentCount = 1; // gradlab is 1 segment
       const path = window.location.pathname
         .split('/')
         .slice(segmentCount + 1)
@@ -23,12 +23,12 @@
       }
       
       // Redirect to the base URL
-      window.location.replace('/micrograd-playground/');
+      window.location.replace('/gradlab/');
     </script>
   </head>
   <body>
     <noscript>
-      <meta http-equiv="refresh" content="0;url=/micrograd-playground/" />
+      <meta http-equiv="refresh" content="0;url=/gradlab/" />
     </noscript>
   </body>
 </html>

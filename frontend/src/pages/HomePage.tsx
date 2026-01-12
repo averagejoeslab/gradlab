@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { 
   ArrowRight, 
-  Sparkles, 
+  FlaskConical, 
   Boxes, 
   GraduationCap,
   Zap,
@@ -49,7 +49,7 @@ export function HomePage() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full 
                           bg-flow-600/10 border border-flow-500/20 mb-8">
-              <Sparkles className="w-4 h-4 text-flow-400" />
+              <FlaskConical className="w-4 h-4 text-flow-400" />
               <span className="text-sm text-flow-300">Learn neural networks visually</span>
             </div>
 

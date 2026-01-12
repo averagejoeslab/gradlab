@@ -4,7 +4,7 @@ import {
   Home, 
   GraduationCap, 
   Boxes, 
-  Sparkles
+  FlaskConical
 } from 'lucide-react'
 
 const navItems = [
@@ -25,11 +25,11 @@ export function Layout() {
           <Link to="/" className="flex items-center gap-3 group">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-flow-500 to-accent-violet 
                           flex items-center justify-center group-hover:scale-110 transition-transform">
-              <Sparkles className="w-5 h-5 text-white" />
+              <FlaskConical className="w-5 h-5 text-white" />
             </div>
             <span className="font-semibold text-xl">
-              <span className="text-white">micro</span>
-              <span className="text-flow-400">grad</span>
+              <span className="text-white">Grad</span>
+              <span className="text-flow-400">Lab</span>
             </span>
           </Link>
 
@@ -79,7 +79,7 @@ export function Layout() {
       {/* Footer */}
       <footer className="border-t border-white/5 py-6">
         <div className="max-w-7xl mx-auto px-6 text-center text-gray-500 text-sm">
-          Built with{' '}
+          Inspired by{' '}
           <a 
             href="https://github.com/karpathy/micrograd" 
             target="_blank" 
@@ -88,7 +88,7 @@ export function Layout() {
           >
             micrograd
           </a>
-          {' '}• An educational neural network playground
+          {' '}• Learn neural networks visually
         </div>
       </footer>
     </div>

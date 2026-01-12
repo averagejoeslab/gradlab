@@ -1,7 +1,7 @@
 {
-  "name": "micrograd-playground",
+  "name": "gradlab",
   "version": "0.1.0",
-  "description": "Interactive web playground for understanding neural networks with micrograd",
+  "description": "GradLab - Learn neural networks visually, from scratch",
   "type": "module",
   "scripts": {
     "dev": "vite",
