@@ -4,7 +4,6 @@ import { Check, HelpCircle, Play } from 'lucide-react'
 import { ModuleShell, StepContent } from '../../../components/learn'
 
 export function FindingWhatToFixModule() {
-  const [step, setStep] = useState(0)
   const [a, setA] = useState(2)
   const [b, setB] = useState(3)
   const [showWiggle, setShowWiggle] = useState(false)
@@ -26,8 +25,6 @@ export function FindingWhatToFixModule() {
       subtitle="Tracing back to find the problem"
       moduleId="finding-what-to-fix"
       totalSteps={7}
-      currentStep={step}
-      onStepChange={setStep}
       progressColor="orange"
     >
       {/* Vocabulary reminder */}
@@ -39,7 +36,7 @@ export function FindingWhatToFixModule() {
         </span>
       </div>
 
-      <StepContent step={0} currentStep={step}>
+      <StepContent step={0}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           What you'll learn
         </h2>
@@ -69,7 +66,7 @@ export function FindingWhatToFixModule() {
         </div>
       </StepContent>
 
-      <StepContent step={1} currentStep={step}>
+      <StepContent step={1}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           The question: Which weights matter?
         </h2>
@@ -94,7 +91,7 @@ export function FindingWhatToFixModule() {
         </div>
       </StepContent>
 
-      <StepContent step={2} currentStep={step}>
+      <StepContent step={2}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           Let's wiggle a number
         </h2>
@@ -191,7 +188,7 @@ export function FindingWhatToFixModule() {
         )}
       </StepContent>
 
-      <StepContent step={3} currentStep={step}>
+      <StepContent step={3}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           Some numbers matter more
         </h2>
@@ -237,7 +234,7 @@ export function FindingWhatToFixModule() {
         </div>
       </StepContent>
 
-      <StepContent step={4} currentStep={step}>
+      <StepContent step={4}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           The gradient: Sensitivity score
         </h2>
@@ -295,7 +292,7 @@ export function FindingWhatToFixModule() {
         </div>
       </StepContent>
 
-      <StepContent step={5} currentStep={step}>
+      <StepContent step={5}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           Backpropagation: Following the trail
         </h2>
@@ -395,7 +392,7 @@ export function FindingWhatToFixModule() {
         )}
       </StepContent>
 
-      <StepContent step={6} currentStep={step}>
+      <StepContent step={6}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           Now we know what to fix!
         </h2>

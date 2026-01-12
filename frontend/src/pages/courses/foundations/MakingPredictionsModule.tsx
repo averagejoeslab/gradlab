@@ -4,7 +4,6 @@ import { Check, HelpCircle, Play } from 'lucide-react'
 import { ModuleShell, StepContent } from '../../../components/learn'
 
 export function MakingPredictionsModule() {
-  const [step, setStep] = useState(0)
   const [showFlow, setShowFlow] = useState(false)
   const [flowStep, setFlowStep] = useState(0)
 
@@ -29,8 +28,6 @@ export function MakingPredictionsModule() {
       subtitle="How inputs become outputs"
       moduleId="making-predictions"
       totalSteps={6}
-      currentStep={step}
-      onStepChange={setStep}
       progressColor="flow"
     >
       {/* Vocabulary reminder */}
@@ -42,7 +39,7 @@ export function MakingPredictionsModule() {
         </span>
       </div>
 
-      <StepContent step={0} currentStep={step}>
+      <StepContent step={0}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           What you'll learn
         </h2>
@@ -75,7 +72,7 @@ export function MakingPredictionsModule() {
         </div>
       </StepContent>
 
-      <StepContent step={1} currentStep={step}>
+      <StepContent step={1}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           Data flows forward
         </h2>
@@ -142,7 +139,7 @@ export function MakingPredictionsModule() {
         </p>
       </StepContent>
 
-      <StepContent step={2} currentStep={step}>
+      <StepContent step={2}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           What happens at each layer?
         </h2>
@@ -187,7 +184,7 @@ export function MakingPredictionsModule() {
         </div>
       </StepContent>
 
-      <StepContent step={3} currentStep={step}>
+      <StepContent step={3}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           Watch data flow through
         </h2>
@@ -337,7 +334,7 @@ export function MakingPredictionsModule() {
         )}
       </StepContent>
 
-      <StepContent step={4} currentStep={step}>
+      <StepContent step={4}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           Each layer finds different patterns
         </h2>
@@ -370,7 +367,7 @@ export function MakingPredictionsModule() {
         </div>
       </StepContent>
 
-      <StepContent step={5} currentStep={step}>
+      <StepContent step={5}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           But what if the prediction is wrong?
         </h2>

@@ -4,7 +4,6 @@ import { Check, HelpCircle } from 'lucide-react'
 import { ModuleShell, StepContent } from '../../../components/learn'
 
 export function MakingAdjustmentsModule() {
-  const [step, setStep] = useState(0)
   const [weight, setWeight] = useState(2.0)
   const [learningRate, setLearningRate] = useState(0.1)
   const gradient = 0.5 // Pretend gradient
@@ -18,8 +17,6 @@ export function MakingAdjustmentsModule() {
       subtitle="Actually improving the network"
       moduleId="making-adjustments"
       totalSteps={6}
-      currentStep={step}
-      onStepChange={setStep}
       progressColor="emerald"
     >
       {/* Vocabulary reminder */}
@@ -30,7 +27,7 @@ export function MakingAdjustmentsModule() {
         </span>
       </div>
 
-      <StepContent step={0} currentStep={step}>
+      <StepContent step={0}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           What you'll learn
         </h2>
@@ -60,7 +57,7 @@ export function MakingAdjustmentsModule() {
         </div>
       </StepContent>
 
-      <StepContent step={1} currentStep={step}>
+      <StepContent step={1}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           The update rule
         </h2>
@@ -99,7 +96,7 @@ export function MakingAdjustmentsModule() {
         </div>
       </StepContent>
 
-      <StepContent step={2} currentStep={step}>
+      <StepContent step={2}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           Gradient descent: Rolling downhill
         </h2>
@@ -157,7 +154,7 @@ export function MakingAdjustmentsModule() {
         </div>
       </StepContent>
 
-      <StepContent step={3} currentStep={step}>
+      <StepContent step={3}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           The learning rate: Step size
         </h2>
@@ -200,7 +197,7 @@ export function MakingAdjustmentsModule() {
         </div>
       </StepContent>
 
-      <StepContent step={4} currentStep={step}>
+      <StepContent step={4}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           Try it yourself
         </h2>
@@ -282,7 +279,7 @@ export function MakingAdjustmentsModule() {
         </div>
       </StepContent>
 
-      <StepContent step={5} currentStep={step}>
+      <StepContent step={5}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           Every weight gets updated
         </h2>

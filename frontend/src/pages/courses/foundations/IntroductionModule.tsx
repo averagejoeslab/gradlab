@@ -1,10 +1,7 @@
-import { useState } from 'react'
 import { BookOpen, RefreshCw } from 'lucide-react'
 import { ModuleShell, StepContent } from '../../../components/learn'
 
 export function IntroductionModule() {
-  const [step, setStep] = useState(0)
-
   return (
     <ModuleShell
       courseId="foundations"
@@ -12,11 +9,9 @@ export function IntroductionModule() {
       subtitle="What is a neural network?"
       moduleId="introduction"
       totalSteps={7}
-      currentStep={step}
-      onStepChange={setStep}
       progressColor="flow"
     >
-      <StepContent step={0} currentStep={step}>
+      <StepContent step={0}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           What you'll learn
         </h2>
@@ -49,7 +44,7 @@ export function IntroductionModule() {
         </div>
       </StepContent>
 
-      <StepContent step={1} currentStep={step}>
+      <StepContent step={1}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           What is a neural network?
         </h2>
@@ -68,7 +63,7 @@ export function IntroductionModule() {
         </div>
       </StepContent>
 
-      <StepContent step={2} currentStep={step}>
+      <StepContent step={2}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           What does a neural network do?
         </h2>
@@ -96,7 +91,7 @@ export function IntroductionModule() {
         </p>
       </StepContent>
 
-      <StepContent step={3} currentStep={step}>
+      <StepContent step={3}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           Think about teaching a toddler
         </h2>
@@ -128,7 +123,7 @@ export function IntroductionModule() {
         </p>
       </StepContent>
 
-      <StepContent step={4} currentStep={step}>
+      <StepContent step={4}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           Learning from mistakes
         </h2>
@@ -172,7 +167,7 @@ export function IntroductionModule() {
         </div>
       </StepContent>
 
-      <StepContent step={5} currentStep={step}>
+      <StepContent step={5}>
         <div className="flex items-center gap-3 mb-6">
           <div className="w-12 h-12 rounded-xl bg-accent-violet/20 flex items-center justify-center">
             <RefreshCw className="w-6 h-6 text-accent-violet" />
@@ -229,7 +224,7 @@ export function IntroductionModule() {
         </div>
       </StepContent>
 
-      <StepContent step={6} currentStep={step}>
+      <StepContent step={6}>
         <div className="flex items-center gap-3 mb-6">
           <div className="w-12 h-12 rounded-xl bg-flow-600/20 flex items-center justify-center">
             <BookOpen className="w-6 h-6 text-flow-400" />

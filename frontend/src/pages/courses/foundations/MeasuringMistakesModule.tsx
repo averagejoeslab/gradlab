@@ -4,7 +4,6 @@ import { Check, HelpCircle } from 'lucide-react'
 import { ModuleShell, StepContent } from '../../../components/learn'
 
 export function MeasuringMistakesModule() {
-  const [step, setStep] = useState(0)
   const [prediction, setPrediction] = useState(0.7)
   const target = 1.0
 
@@ -17,8 +16,6 @@ export function MeasuringMistakesModule() {
       subtitle="How we know when we're wrong"
       moduleId="measuring-mistakes"
       totalSteps={6}
-      currentStep={step}
-      onStepChange={setStep}
       progressColor="rose"
     >
       {/* Vocabulary reminder */}
@@ -30,7 +27,7 @@ export function MeasuringMistakesModule() {
         </span>
       </div>
 
-      <StepContent step={0} currentStep={step}>
+      <StepContent step={0}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           What you'll learn
         </h2>
@@ -60,7 +57,7 @@ export function MeasuringMistakesModule() {
         </div>
       </StepContent>
 
-      <StepContent step={1} currentStep={step}>
+      <StepContent step={1}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           The problem: We need a score
         </h2>
@@ -97,7 +94,7 @@ export function MeasuringMistakesModule() {
         </p>
       </StepContent>
 
-      <StepContent step={2} currentStep={step}>
+      <StepContent step={2}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           The simplest loss: Squared error
         </h2>
@@ -144,7 +141,7 @@ export function MeasuringMistakesModule() {
         </div>
       </StepContent>
 
-      <StepContent step={3} currentStep={step}>
+      <StepContent step={3}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           Try it yourself
         </h2>
@@ -224,7 +221,7 @@ export function MeasuringMistakesModule() {
         </div>
       </StepContent>
 
-      <StepContent step={4} currentStep={step}>
+      <StepContent step={4}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           Training = minimizing loss
         </h2>
@@ -284,7 +281,7 @@ export function MeasuringMistakesModule() {
         </div>
       </StepContent>
 
-      <StepContent step={5} currentStep={step}>
+      <StepContent step={5}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           But which weights do we change?
         </h2>

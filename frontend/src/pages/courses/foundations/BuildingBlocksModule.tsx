@@ -1,10 +1,12 @@
 import { useState, useMemo, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Check, HelpCircle } from 'lucide-react'
-import { ModuleShell, StepContent } from '../../../components/learn'
+import { ModuleShell, StepContent, useCurrentStep } from '../../../components/learn'
 
 export function BuildingBlocksModule() {
-  const [step, setStep] = useState(0)
+  // Get current step from context (persisted in store)
+  const currentStep = useCurrentStep()
+  
   const [inputs, setInputs] = useState([0, 0])
   const [weights, setWeights] = useState([0, 0])
   const [bias, setBias] = useState(0)
@@ -13,14 +15,14 @@ export function BuildingBlocksModule() {
   const [pulsePhase, setPulsePhase] = useState(0)
   
   useEffect(() => {
-    if (step !== 1) return // Only animate on step 1
+    if (currentStep !== 1) return // Only animate on step 1
     
     const interval = setInterval(() => {
       setPulsePhase(prev => (prev + 1) % 3)
     }, 1000) // 1 second per phase
     
     return () => clearInterval(interval)
-  }, [step])
+  }, [currentStep])
 
   const computation = useMemo(() => {
     const weightedSum = inputs[0] * weights[0] + inputs[1] * weights[1] + bias
@@ -35,8 +37,6 @@ export function BuildingBlocksModule() {
       subtitle="The parts of a neural network"
       moduleId="building-blocks"
       totalSteps={10}
-      currentStep={step}
-      onStepChange={setStep}
       progressColor="cyan"
     >
       {/* Vocabulary reminder - shown above content */}
@@ -47,7 +47,7 @@ export function BuildingBlocksModule() {
         </span>
       </div>
 
-      <StepContent step={0} currentStep={step}>
+      <StepContent step={0}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           What you'll learn
         </h2>
@@ -81,7 +81,7 @@ export function BuildingBlocksModule() {
         </div>
       </StepContent>
 
-      <StepContent step={1} currentStep={step}>
+      <StepContent step={1}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           Why "neuron"?
         </h2>
@@ -275,7 +275,7 @@ export function BuildingBlocksModule() {
         </div>
       </StepContent>
 
-      <StepContent step={2} currentStep={step}>
+      <StepContent step={2}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           Meet the artificial neuron
         </h2>
@@ -440,7 +440,7 @@ export function BuildingBlocksModule() {
         </p>
       </StepContent>
 
-      <StepContent step={3} currentStep={step}>
+      <StepContent step={3}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           The parts of a neuron
         </h2>
@@ -536,7 +536,7 @@ export function BuildingBlocksModule() {
         </div>
       </StepContent>
 
-      <StepContent step={4} currentStep={step}>
+      <StepContent step={4}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           The key insight: Weights are learned
         </h2>
@@ -586,7 +586,7 @@ export function BuildingBlocksModule() {
         </div>
       </StepContent>
 
-      <StepContent step={5} currentStep={step}>
+      <StepContent step={5}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           The math (it's just multiply and add!)
         </h2>
@@ -753,7 +753,7 @@ export function BuildingBlocksModule() {
         </div>
       </StepContent>
 
-      <StepContent step={6} currentStep={step}>
+      <StepContent step={6}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           Try it yourself
         </h2>
@@ -910,7 +910,7 @@ export function BuildingBlocksModule() {
         </div>
       </StepContent>
 
-      <StepContent step={7} currentStep={step}>
+      <StepContent step={7}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           Layers: Neurons working together
         </h2>
@@ -1027,7 +1027,7 @@ export function BuildingBlocksModule() {
         </div>
       </StepContent>
 
-      <StepContent step={8} currentStep={step}>
+      <StepContent step={8}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           MLP: The complete network
         </h2>
@@ -1140,7 +1140,7 @@ export function BuildingBlocksModule() {
         </div>
       </StepContent>
 
-      <StepContent step={9} currentStep={step}>
+      <StepContent step={9}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           Recap: The building blocks
         </h2>

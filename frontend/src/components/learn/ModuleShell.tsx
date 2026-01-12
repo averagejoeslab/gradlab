@@ -1,7 +1,7 @@
-import { ReactNode } from 'react'
+import { ReactNode, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react'
-import { useStore } from '../../store/useStore'
+import { useModuleProgress } from '../../store/useStore'
 import { 
   getCourseById, 
   getNextModule, 
@@ -11,6 +11,7 @@ import {
   progressColorClasses,
   ModuleColor
 } from '../../data/courses'
+import { ModuleProvider } from './ModuleContext'
 
 export interface ModuleShellProps {
   /** Unique course ID this module belongs to */
@@ -23,10 +24,6 @@ export interface ModuleShellProps {
   moduleId: string
   /** Total number of steps in this module */
   totalSteps: number
-  /** Current step (0-indexed) */
-  currentStep: number
-  /** Callback when step changes */
-  onStepChange: (step: number) => void
   /** Color theme for progress bar (default: 'flow') */
   progressColor?: ModuleColor
   /** The step content to render */
@@ -38,12 +35,15 @@ export interface ModuleShellProps {
  * 
  * Provides consistent layout with:
  * - Header (back button, title, subtitle)
- * - Progress bar
+ * - Progress bar (persisted across page refreshes!)
  * - Content card
  * - Navigation (Previous/Next buttons)
  * 
- * Now course-aware - automatically handles navigation to next module
- * and back to course page based on the courseId.
+ * Step progress is now automatically persisted to localStorage via Zustand.
+ * Users can refresh the page and return to exactly where they left off.
+ * 
+ * The current step is provided to children via React Context, so StepContent
+ * components can automatically know which step is active without prop drilling.
  * 
  * @example
  * ```tsx
@@ -53,14 +53,12 @@ export interface ModuleShellProps {
  *   subtitle="What is a neural network?"
  *   moduleId="introduction"
  *   totalSteps={7}
- *   currentStep={step}
- *   onStepChange={setStep}
  *   progressColor="flow"
  * >
- *   <StepContent step={0} currentStep={step}>
- *     {/* Step 0 content *\/}
+ *   <StepContent step={0}>
+ *     {/* Step 0 content - no need to pass currentStep! *\/}
  *   </StepContent>
- *   <StepContent step={1} currentStep={step}>
+ *   <StepContent step={1}>
  *     {/* Step 1 content *\/}
  *   </StepContent>
  * </ModuleShell>
@@ -72,12 +70,11 @@ export function ModuleShell({
   subtitle,
   moduleId,
   totalSteps,
-  currentStep,
-  onStepChange,
   progressColor = 'flow',
   children,
 }: ModuleShellProps) {
-  const { markModuleComplete } = useStore()
+  // Use persisted step progress from the store
+  const { currentStep, setStep, markComplete } = useModuleProgress(courseId, moduleId)
   
   // Get course and navigation info
   const course = getCourseById(courseId)
@@ -93,84 +90,103 @@ export function ModuleShell({
     ? 'Complete Course' 
     : `Continue to ${nextModule?.title || 'Next'}`
 
+  // Ensure step is within bounds (in case totalSteps changed)
+  useEffect(() => {
+    if (currentStep >= totalSteps) {
+      setStep(totalSteps - 1)
+    }
+  }, [currentStep, totalSteps, setStep])
+
   const handleComplete = () => {
-    markModuleComplete(courseId, moduleId)
+    markComplete()
   }
 
   const handlePrevious = () => {
-    onStepChange(Math.max(0, currentStep - 1))
+    setStep(Math.max(0, currentStep - 1))
   }
 
   const handleNext = () => {
-    onStepChange(currentStep + 1)
+    setStep(Math.min(totalSteps - 1, currentStep + 1))
   }
 
   const progressColorClass = progressColorClasses[progressColor] || progressColorClasses.flow
 
+  // Context value for child components
+  const contextValue = {
+    currentStep,
+    totalSteps,
+    courseId,
+    moduleId,
+  }
+
   return (
-    <div className="max-w-4xl mx-auto px-6 py-12">
-      {/* Header */}
-      <div className="flex items-center gap-4 mb-8">
-        <Link
-          to={backPath}
-          className="p-2 rounded-lg hover:bg-white/5 text-gray-400 hover:text-white transition-colors"
-          title={`Back to ${course?.title || 'Course'}`}
-        >
-          <ArrowLeft className="w-5 h-5" />
-        </Link>
-        <div>
-          <h1 className="text-3xl font-bold text-white">{title}</h1>
-          <p className="text-gray-400">{subtitle}</p>
+    <ModuleProvider value={contextValue}>
+      <div className="max-w-4xl mx-auto px-6 py-12">
+        {/* Header */}
+        <div className="flex items-center gap-4 mb-8">
+          <Link
+            to={backPath}
+            className="p-2 rounded-lg hover:bg-white/5 text-gray-400 hover:text-white transition-colors"
+            title={`Back to ${course?.title || 'Course'}`}
+          >
+            <ArrowLeft className="w-5 h-5" />
+          </Link>
+          <div>
+            <h1 className="text-3xl font-bold text-white">{title}</h1>
+            <p className="text-gray-400">{subtitle}</p>
+          </div>
+        </div>
+
+        {/* Progress Bar - clickable to jump to steps */}
+        <div className="flex gap-2 mb-8">
+          {[...Array(totalSteps)].map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setStep(i)}
+              className={`h-1 flex-1 rounded-full transition-colors cursor-pointer hover:opacity-80 ${
+                i <= currentStep ? progressColorClass : 'bg-void-700'
+              }`}
+              title={`Go to step ${i + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* Content Card */}
+        <div className="glass-card mb-8">
+          {children}
+        </div>
+
+        {/* Navigation */}
+        <div className="flex items-center justify-between">
+          <button
+            onClick={handlePrevious}
+            disabled={currentStep === 0}
+            className="btn-secondary flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Previous
+          </button>
+
+          {currentStep < totalSteps - 1 ? (
+            <button
+              onClick={handleNext}
+              className="btn-primary flex items-center gap-2"
+            >
+              Next
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          ) : (
+            <Link
+              to={nextPath}
+              onClick={handleComplete}
+              className="btn-primary flex items-center gap-2"
+            >
+              {nextLabel}
+              {isFinalModule ? <Check className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
+            </Link>
+          )}
         </div>
       </div>
-
-      {/* Progress Bar */}
-      <div className="flex gap-2 mb-8">
-        {[...Array(totalSteps)].map((_, i) => (
-          <div
-            key={i}
-            className={`h-1 flex-1 rounded-full transition-colors ${
-              i <= currentStep ? progressColorClass : 'bg-void-700'
-            }`}
-          />
-        ))}
-      </div>
-
-      {/* Content Card */}
-      <div className="glass-card mb-8">
-        {children}
-      </div>
-
-      {/* Navigation */}
-      <div className="flex items-center justify-between">
-        <button
-          onClick={handlePrevious}
-          disabled={currentStep === 0}
-          className="btn-secondary flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Previous
-        </button>
-
-        {currentStep < totalSteps - 1 ? (
-          <button
-            onClick={handleNext}
-            className="btn-primary flex items-center gap-2"
-          >
-            Next
-            <ArrowRight className="w-4 h-4" />
-          </button>
-        ) : (
-          <Link
-            to={nextPath}
-            onClick={handleComplete}
-            className="btn-primary flex items-center gap-2"
-          >
-            {nextLabel}
-            {isFinalModule ? <Check className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
-          </Link>
-        )}
-      </div>
-    </div>
+    </ModuleProvider>
   )
 }

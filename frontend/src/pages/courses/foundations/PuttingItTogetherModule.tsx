@@ -1,12 +1,9 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Check, Sparkles, RefreshCw } from 'lucide-react'
 import { ModuleShell, StepContent } from '../../../components/learn'
 
 export function PuttingItTogetherModule() {
-  const [step, setStep] = useState(0)
-
   return (
     <ModuleShell
       courseId="foundations"
@@ -14,11 +11,9 @@ export function PuttingItTogetherModule() {
       subtitle="The complete training loop"
       moduleId="putting-it-together"
       totalSteps={5}
-      currentStep={step}
-      onStepChange={setStep}
       progressColor="violet"
     >
-      <StepContent step={0} currentStep={step}>
+      <StepContent step={0}>
         <div className="flex items-center gap-3 mb-6">
           <div className="w-12 h-12 rounded-xl bg-accent-violet/20 flex items-center justify-center">
             <RefreshCw className="w-6 h-6 text-accent-violet" />
@@ -71,7 +66,7 @@ export function PuttingItTogetherModule() {
         </div>
       </StepContent>
 
-      <StepContent step={1} currentStep={step}>
+      <StepContent step={1}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           Each cycle makes it better
         </h2>
@@ -141,7 +136,7 @@ export function PuttingItTogetherModule() {
         </p>
       </StepContent>
 
-      <StepContent step={2} currentStep={step}>
+      <StepContent step={2}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           Epochs: Full passes through data
         </h2>
@@ -184,7 +179,7 @@ export function PuttingItTogetherModule() {
         </p>
       </StepContent>
 
-      <StepContent step={3} currentStep={step}>
+      <StepContent step={3}>
         <h2 className="text-2xl font-semibold text-white mb-6">
           The complete picture
         </h2>
@@ -263,7 +258,7 @@ export function PuttingItTogetherModule() {
         </div>
       </StepContent>
 
-      <StepContent step={4} currentStep={step}>
+      <StepContent step={4}>
         <h2 className="text-2xl font-semibold text-white mb-4">
           🎉 You made it!
         </h2>
