@@ -774,7 +774,7 @@ export function BuildingBlocksModule() {
         </div>
 
         {/* Takeaway formula */}
-        <div className="bg-void-900 rounded-xl p-6 border border-white/10">
+        <div className="bg-void-900 rounded-xl p-6 border border-white/10 mb-6">
           <div className="text-center">
             <div className="text-gray-500 text-sm mb-3 uppercase tracking-wide">The Neuron Formula</div>
             <div className="text-xl md:text-2xl text-white font-mono mb-4">
@@ -789,6 +789,53 @@ export function BuildingBlocksModule() {
               <span><span className="text-gray-400 font-mono">b</span> <span className="text-gray-500">= bias</span></span>
             </div>
           </div>
+        </div>
+
+        {/* Activation function explanation */}
+        <h3 className="text-xl font-semibold text-white mb-4">
+          One more step: The activation function
+        </h3>
+        <p className="text-gray-300 mb-4 leading-relaxed">
+          After computing the weighted sum, there's one more step. We apply an <strong className="text-accent-emerald">activation function</strong> — 
+          a simple rule that decides the final output.
+        </p>
+        <p className="text-gray-300 mb-6 leading-relaxed">
+          The most common one is called <strong className="text-accent-emerald">ReLU</strong> (Rectified Linear Unit). 
+          It does one simple thing:
+        </p>
+
+        <div className="bg-accent-emerald/10 border border-accent-emerald/30 rounded-xl p-6 mb-6">
+          <div className="text-center">
+            <div className="text-lg text-white mb-2">
+              If the result is <span className="text-accent-rose">negative</span> → output <span className="font-mono">0</span>
+            </div>
+            <div className="text-lg text-white">
+              If the result is <span className="text-accent-emerald">positive</span> → keep it as is
+            </div>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-4 mb-6">
+          <div className="p-4 rounded-xl bg-void-800/50">
+            <div className="text-gray-400 text-sm mb-1">Example 1:</div>
+            <div className="text-white">
+              Weighted sum = <span className="text-accent-emerald">2.5</span> → Output = <span className="text-accent-emerald font-mono">2.5</span>
+            </div>
+          </div>
+          <div className="p-4 rounded-xl bg-void-800/50">
+            <div className="text-gray-400 text-sm mb-1">Example 2:</div>
+            <div className="text-white">
+              Weighted sum = <span className="text-accent-rose">-3.0</span> → Output = <span className="font-mono">0</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-void-800 rounded-xl p-4 text-sm">
+          <p className="text-gray-300">
+            <strong className="text-white">Why do this?</strong> Activation functions help neural networks learn 
+            complex patterns. Without them, stacking layers wouldn't help — the network would just be doing 
+            one big multiply-and-add. ReLU is popular because it's simple and works well.
+          </p>
         </div>
       </StepContent>
 
@@ -945,6 +992,7 @@ export function BuildingBlocksModule() {
             <li>• Set a weight to <span className="text-accent-violet font-mono">0</span> — that input gets ignored!</li>
             <li>• Make a weight <span className="text-accent-violet font-mono">negative</span> — higher inputs decrease the output</li>
             <li>• Use <span className="text-gray-300 font-mono">bias</span> to shift all outputs up or down</li>
+            <li>• Get a <span className="text-accent-rose">negative</span> weighted sum — watch ReLU set the output to <span className="font-mono">0</span></li>
           </ul>
         </div>
       </StepContent>
@@ -1196,7 +1244,7 @@ export function BuildingBlocksModule() {
               <div className="font-medium text-accent-cyan">Neuron</div>
             </div>
             <p className="text-sm text-gray-400">
-              The basic unit. Takes inputs, multiplies by weights, adds them up, outputs a number.
+              The basic unit. Takes inputs, multiplies by weights, adds them up, applies an activation function (like ReLU), and outputs a number.
             </p>
           </div>
 
