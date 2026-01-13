@@ -107,33 +107,42 @@ export function MakingAdjustmentsModule() {
 
         <div className="flex items-center justify-center my-8">
           <svg viewBox="0 0 300 140" className="w-full max-w-md">
-            {/* Loss landscape */}
+            {/* Loss landscape - valley shape (y increases downward in SVG) */}
+            {/* High loss at top (low y), minimum at bottom of valley (high y) */}
             <path
-              d="M 20 100 Q 80 120 150 50 Q 220 20 280 80"
+              d="M 20 30 C 50 30, 80 100, 150 105 C 220 110, 250 50, 280 30"
               fill="none"
               stroke="#374151"
               strokeWidth="3"
             />
             
-            {/* Ball rolling animation */}
-            <motion.g
-              initial={{ x: 0 }}
-              animate={{ x: [0, 40, 80, 110] }}
-              transition={{ duration: 3, repeat: Infinity, repeatDelay: 1 }}
-            >
-              <circle cx="40" cy="110" r="8" className="fill-accent-emerald" />
-            </motion.g>
+            {/* Ball rolling animation - follows the curve from high loss to minimum */}
+            <motion.circle
+              r="8"
+              className="fill-accent-emerald"
+              initial={{ cx: 40, cy: 35 }}
+              animate={{ 
+                cx: [40, 80, 120, 150],
+                cy: [35, 70, 95, 105]
+              }}
+              transition={{ 
+                duration: 3, 
+                repeat: Infinity, 
+                repeatDelay: 1,
+                ease: "easeIn"
+              }}
+            />
             
             {/* Labels */}
-            <text x="150" y="135" textAnchor="middle" className="fill-gray-500 text-xs">weights</text>
-            <text x="15" y="50" className="fill-gray-500 text-xs">loss</text>
+            <text x="150" y="130" textAnchor="middle" className="fill-gray-500 text-xs">weights</text>
+            <text x="15" y="70" className="fill-gray-500 text-xs">loss</text>
             
-            {/* Minimum marker */}
-            <line x1="200" y1="30" x2="200" y2="45" stroke="#34d399" strokeWidth="2" strokeDasharray="3,3" />
-            <text x="200" y="55" textAnchor="middle" className="fill-accent-emerald text-xs">minimum</text>
+            {/* Minimum marker - at the bottom of the valley */}
+            <line x1="150" y1="105" x2="150" y2="118" stroke="#34d399" strokeWidth="2" strokeDasharray="3,3" />
+            <text x="150" y="125" textAnchor="middle" className="fill-accent-emerald text-xs">minimum</text>
 
-            {/* High point */}
-            <text x="40" y="95" textAnchor="middle" className="fill-accent-rose text-xs">high loss</text>
+            {/* High point label */}
+            <text x="40" y="25" textAnchor="middle" className="fill-accent-rose text-xs">high loss</text>
           </svg>
         </div>
 
