@@ -138,18 +138,35 @@ export function PuttingItTogetherModule() {
 
       <StepContent step={2}>
         <h2 className="text-2xl font-semibold text-white mb-6">
-          Epochs: Full passes through data
+          Steps, iterations, and epochs
         </h2>
+        
         <p className="text-gray-300 mb-6 leading-relaxed">
-          Training data often has many examples (maybe thousands of dog photos!). 
-          One complete pass through all your training data is called an <strong className="text-white">epoch</strong>.
+          Let's get clear on the terminology:
         </p>
+
+        <div className="space-y-4 mb-6">
+          <div className="p-4 rounded-xl bg-flow-600/10 border border-flow-500/30">
+            <div className="font-medium text-flow-400 mb-1">Step / Iteration</div>
+            <div className="text-sm text-gray-400">
+              One complete cycle: forward pass → compute loss → backpropagation → update weights. 
+              These terms mean the same thing.
+            </div>
+          </div>
+          <div className="p-4 rounded-xl bg-accent-violet/10 border border-accent-violet/30">
+            <div className="font-medium text-accent-violet mb-1">Epoch</div>
+            <div className="text-sm text-gray-400">
+              One complete pass through <em>all</em> your training data. If you have 1,000 examples, 
+              one epoch means doing 1,000 steps (one for each example).
+            </div>
+          </div>
+        </div>
 
         <div className="bg-void-800 rounded-xl p-6 mb-6">
           <div className="text-center">
             <div className="text-gray-400 mb-2">If you have 1,000 training examples:</div>
             <div className="text-lg text-white">
-              1 epoch = showing the network all 1,000 examples
+              1 epoch = 1,000 steps = seeing every example once
             </div>
           </div>
         </div>
@@ -173,10 +190,13 @@ export function PuttingItTogetherModule() {
           </div>
         </div>
 
-        <p className="text-gray-300 leading-relaxed">
-          Like studying for a test, seeing examples multiple times helps the network 
-          learn the patterns better.
-        </p>
+        <div className="bg-accent-emerald/10 border border-accent-emerald/30 rounded-xl p-4">
+          <div className="font-medium text-white mb-2">When do we stop training?</div>
+          <p className="text-sm text-gray-400">
+            We stop when the loss stops improving significantly — this is called <strong className="text-accent-emerald">convergence</strong>. 
+            The network has learned as much as it can from the data.
+          </p>
+        </div>
       </StepContent>
 
       <StepContent step={3}>

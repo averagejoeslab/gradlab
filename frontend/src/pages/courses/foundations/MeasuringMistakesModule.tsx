@@ -131,13 +131,21 @@ export function MeasuringMistakesModule() {
           </div>
         </div>
 
-        <div className="bg-void-800 rounded-xl p-4 text-sm">
+        <div className="bg-void-800 rounded-xl p-4 text-sm mb-4">
           <div className="text-gray-400 mb-2">Example:</div>
           <div className="text-gray-300">
             If we predicted <span className="text-grad-400">0.8</span> but the answer was <span className="text-accent-emerald">1.0</span>:
             <br />
             Loss = (0.8 − 1.0)² = (−0.2)² = <span className="text-accent-rose">0.04</span>
           </div>
+        </div>
+
+        <div className="p-3 rounded-lg bg-void-800/30 border border-white/5">
+          <p className="text-sm text-gray-400">
+            <strong className="text-gray-300">Technical note:</strong> When you average this squared error 
+            across many examples, it's called <strong className="text-white">Mean Squared Error (MSE)</strong> — 
+            one of the most common loss functions in machine learning.
+          </p>
         </div>
       </StepContent>
 
@@ -329,10 +337,10 @@ export function MeasuringMistakesModule() {
             </div>
             <div>
               <div className="text-accent-rose font-medium">Loss Function</div>
-              <div className="text-xs text-gray-400">The formula we use to calculate the loss</div>
+              <div className="text-xs text-gray-400">The formula we use to calculate the loss (e.g., MSE)</div>
             </div>
             <div>
-              <div className="text-accent-emerald font-medium">Target</div>
+              <div className="text-accent-emerald font-medium">Target / Ground Truth</div>
               <div className="text-xs text-gray-400">The correct answer we're trying to match</div>
             </div>
             <div>

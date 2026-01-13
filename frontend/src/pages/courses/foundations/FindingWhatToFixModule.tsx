@@ -222,7 +222,7 @@ export function FindingWhatToFixModule() {
           </div>
         </div>
 
-        <div className="bg-void-800 rounded-xl p-6">
+        <div className="bg-void-800 rounded-xl p-6 mb-4">
           <p className="text-gray-300 mb-4">
             <strong className="text-white">The pattern:</strong> How much the result changes 
             depends on the <em>other</em> numbers in the equation.
@@ -230,6 +230,15 @@ export function FindingWhatToFixModule() {
           <p className="text-gray-400 text-sm">
             When <span className="text-flow-400">b</span> is large, changing <span className="text-flow-400">a</span> has a bigger effect.
             When <span className="text-flow-400">a</span> is large, changing <span className="text-flow-400">b</span> has a bigger effect.
+          </p>
+        </div>
+
+        <div className="p-3 rounded-lg bg-grad-600/10 border border-grad-500/20">
+          <p className="text-sm text-gray-300">
+            <strong className="text-grad-400">Fun fact:</strong> This pattern — where changes flow through 
+            connected operations — is called the <strong className="text-white">chain rule</strong> in math. 
+            You don't need to know the math; just understand that this is how we can trace back through 
+            many calculations to find what affected what.
           </p>
         </div>
       </StepContent>
@@ -448,6 +457,18 @@ export function FindingWhatToFixModule() {
               <div className="text-flow-400 font-medium">Backpropagation</div>
               <div className="text-xs text-gray-400">
                 Working backward to calculate all gradients at once
+              </div>
+            </div>
+            <div>
+              <div className="text-accent-violet font-medium">Chain Rule</div>
+              <div className="text-xs text-gray-400">
+                The math principle that lets changes flow through connected operations
+              </div>
+            </div>
+            <div>
+              <div className="text-white font-medium">Sensitivity</div>
+              <div className="text-xs text-gray-400">
+                How much an output reacts to changes in an input
               </div>
             </div>
           </div>

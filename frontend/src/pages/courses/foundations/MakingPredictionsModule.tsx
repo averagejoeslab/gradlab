@@ -416,7 +416,7 @@ export function MakingPredictionsModule() {
 
         <div className="p-4 rounded-xl bg-void-800/50 border border-white/5">
           <div className="text-sm text-gray-500 mb-2">New vocabulary:</div>
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-3 gap-4">
             <div>
               <div className="text-flow-400 font-medium">Forward Pass</div>
               <div className="text-xs text-gray-400">Data flowing through the network to produce a prediction</div>
@@ -424,6 +424,10 @@ export function MakingPredictionsModule() {
             <div>
               <div className="text-grad-400 font-medium">Prediction</div>
               <div className="text-xs text-gray-400">The output of the network — its "answer"</div>
+            </div>
+            <div>
+              <div className="text-accent-cyan font-medium">Inference</div>
+              <div className="text-xs text-gray-400">Another word for using a network to make predictions</div>
             </div>
           </div>
         </div>

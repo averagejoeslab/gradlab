@@ -53,7 +53,8 @@ export function IntroductionModule() {
         </p>
         <p className="text-gray-300 mb-6 leading-relaxed">
           Instead of being told exactly what to do step by step, a neural network is shown 
-          many examples and figures out the patterns on its own.
+          many examples and figures out the patterns on its own. This approach — learning from 
+          labeled examples — is called <strong className="text-accent-violet">supervised learning</strong>.
         </p>
         <div className="bg-void-800 rounded-xl p-6 border-l-4 border-flow-500">
           <p className="text-gray-300">
@@ -85,10 +86,32 @@ export function IntroductionModule() {
             <div className="text-white font-medium">"It's a dog"</div>
           </div>
         </div>
-        <p className="text-gray-300 leading-relaxed">
+        <p className="text-gray-300 mb-6 leading-relaxed">
           The magic is that <strong className="text-white">you don't tell it how</strong> to recognize a dog. 
           You just show it thousands of pictures <em>labeled as "dog"</em>, and it figures out the patterns itself.
         </p>
+
+        <div className="bg-void-800/50 rounded-xl p-4 border border-white/5">
+          <div className="text-sm text-gray-500 mb-3">Neural networks power many things you use every day:</div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div className="p-2 rounded-lg bg-flow-600/10 text-center">
+              <div className="text-lg mb-1">📷</div>
+              <div className="text-xs text-gray-400">Photo tagging</div>
+            </div>
+            <div className="p-2 rounded-lg bg-accent-violet/10 text-center">
+              <div className="text-lg mb-1">🌐</div>
+              <div className="text-xs text-gray-400">Translation</div>
+            </div>
+            <div className="p-2 rounded-lg bg-accent-cyan/10 text-center">
+              <div className="text-lg mb-1">🎤</div>
+              <div className="text-xs text-gray-400">Voice assistants</div>
+            </div>
+            <div className="p-2 rounded-lg bg-grad-600/10 text-center">
+              <div className="text-lg mb-1">🎬</div>
+              <div className="text-xs text-gray-400">Recommendations</div>
+            </div>
+          </div>
+        </div>
       </StepContent>
 
       <StepContent step={3}>
