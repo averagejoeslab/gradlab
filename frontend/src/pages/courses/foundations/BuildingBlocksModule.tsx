@@ -21,7 +21,7 @@ function BiologicalNeuronAnimation() {
     
     return () => clearInterval(interval)
   }, [currentStep])
-  
+
   return (
     <BiologicalNeuronSVG pulsePhase={pulsePhase} />
   )
@@ -32,135 +32,135 @@ function BiologicalNeuronAnimation() {
  */
 function BiologicalNeuronSVG({ pulsePhase }: { pulsePhase: number }) {
   return (
-    <svg viewBox="0 0 400 160" className="w-full max-w-lg">
-      {/* Glow filters for each part */}
-      <defs>
-        <filter id="glowIndigo" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="4" result="blur" />
-          <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-        <filter id="glowCyan" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="6" result="blur" />
-          <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-        <filter id="glowOrange" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="4" result="blur" />
-          <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-      </defs>
+          <svg viewBox="0 0 400 160" className="w-full max-w-lg">
+            {/* Glow filters for each part */}
+            <defs>
+              <filter id="glowIndigo" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="4" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+              <filter id="glowCyan" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="6" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+              <filter id="glowOrange" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="4" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
 
-      {/* Dendrites (inputs) */}
-      <motion.g
-        animate={{ 
-          opacity: pulsePhase === 0 ? 1 : 0.4,
-          scale: pulsePhase === 0 ? 1.02 : 1
-        }}
-        transition={{ duration: 0.4, ease: "easeInOut" }}
-        style={{ filter: pulsePhase === 0 ? 'url(#glowIndigo)' : 'none' }}
-      >
-        <path d="M 30 40 Q 60 50 80 60" stroke="#6366f1" strokeWidth="3" fill="none" />
-        <path d="M 20 80 Q 50 80 80 70" stroke="#6366f1" strokeWidth="3" fill="none" />
-        <path d="M 30 120 Q 60 110 80 90" stroke="#6366f1" strokeWidth="3" fill="none" />
-        {/* Animated signal dots */}
-        {pulsePhase === 0 && (
-          <>
-            <motion.circle
-              cx="40" cy="48"
-              r="4"
-              fill="#818cf8"
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: [0, 1, 1, 0], x: [0, 30] }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            />
-            <motion.circle
-              cx="30" cy="80"
-              r="4"
-              fill="#818cf8"
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: [0, 1, 1, 0], x: [0, 40] }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-            />
-            <motion.circle
-              cx="40" cy="112"
-              r="4"
-              fill="#818cf8"
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: [0, 1, 1, 0], x: [0, 30] }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            />
-          </>
-        )}
-        <text x="25" y="145" fill="#818cf8" className="text-xs">dendrites</text>
-        <text x="25" y="157" fill="#6366f1" opacity="0.6" className="text-[10px]">(receive signals)</text>
-      </motion.g>
+            {/* Dendrites (inputs) */}
+            <motion.g
+              animate={{ 
+                opacity: pulsePhase === 0 ? 1 : 0.4,
+                scale: pulsePhase === 0 ? 1.02 : 1
+              }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              style={{ filter: pulsePhase === 0 ? 'url(#glowIndigo)' : 'none' }}
+            >
+              <path d="M 30 40 Q 60 50 80 60" stroke="#6366f1" strokeWidth="3" fill="none" />
+              <path d="M 20 80 Q 50 80 80 70" stroke="#6366f1" strokeWidth="3" fill="none" />
+              <path d="M 30 120 Q 60 110 80 90" stroke="#6366f1" strokeWidth="3" fill="none" />
+              {/* Animated signal dots */}
+              {pulsePhase === 0 && (
+                <>
+                  <motion.circle
+                    cx="40" cy="48"
+                    r="4"
+                    fill="#818cf8"
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: [0, 1, 1, 0], x: [0, 30] }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                  />
+                  <motion.circle
+                    cx="30" cy="80"
+                    r="4"
+                    fill="#818cf8"
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: [0, 1, 1, 0], x: [0, 40] }}
+                    transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+                  />
+                  <motion.circle
+                    cx="40" cy="112"
+                    r="4"
+                    fill="#818cf8"
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: [0, 1, 1, 0], x: [0, 30] }}
+                    transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                  />
+                </>
+              )}
+              <text x="25" y="145" fill="#818cf8" className="text-xs">dendrites</text>
+              <text x="25" y="157" fill="#6366f1" opacity="0.6" className="text-[10px]">(receive signals)</text>
+            </motion.g>
 
-      {/* Cell body */}
-      <motion.g
-        animate={{ 
-          opacity: pulsePhase === 1 ? 1 : 0.4,
-          scale: pulsePhase === 1 ? 1.05 : 1
-        }}
-        transition={{ duration: 0.4, ease: "easeInOut" }}
-        style={{ 
-          filter: pulsePhase === 1 ? 'url(#glowCyan)' : 'none',
-          transformOrigin: '120px 80px'
-        }}
-      >
-        <ellipse cx="120" cy="80" rx="45" ry="35" className="fill-accent-cyan/20 stroke-accent-cyan" strokeWidth="3" />
-        {/* Processing animation inside cell */}
-        {pulsePhase === 1 && (
-          <motion.circle
-            cx="120" cy="80"
-            r="15"
-            fill="none"
-            stroke="#22d3ee"
-            strokeWidth="2"
-            initial={{ scale: 0.5, opacity: 0 }}
-            animate={{ scale: [0.5, 1.5], opacity: [0.8, 0] }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          />
-        )}
-        <text x="120" y="75" textAnchor="middle" className="fill-accent-cyan/80 text-xs">cell body</text>
-        <text x="120" y="90" textAnchor="middle" className="fill-accent-cyan/50 text-[10px]">(processes)</text>
-      </motion.g>
+            {/* Cell body */}
+            <motion.g
+              animate={{ 
+                opacity: pulsePhase === 1 ? 1 : 0.4,
+                scale: pulsePhase === 1 ? 1.05 : 1
+              }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              style={{ 
+                filter: pulsePhase === 1 ? 'url(#glowCyan)' : 'none',
+                transformOrigin: '120px 80px'
+              }}
+            >
+              <ellipse cx="120" cy="80" rx="45" ry="35" className="fill-accent-cyan/20 stroke-accent-cyan" strokeWidth="3" />
+              {/* Processing animation inside cell */}
+              {pulsePhase === 1 && (
+                <motion.circle
+                  cx="120" cy="80"
+                  r="15"
+                  fill="none"
+                  stroke="#22d3ee"
+                  strokeWidth="2"
+                  initial={{ scale: 0.5, opacity: 0 }}
+                  animate={{ scale: [0.5, 1.5], opacity: [0.8, 0] }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                />
+              )}
+              <text x="120" y="75" textAnchor="middle" className="fill-accent-cyan/80 text-xs">cell body</text>
+              <text x="120" y="90" textAnchor="middle" className="fill-accent-cyan/50 text-[10px]">(processes)</text>
+            </motion.g>
 
-      {/* Axon (output) */}
-      <motion.g
-        animate={{ 
-          opacity: pulsePhase === 2 ? 1 : 0.4,
-          scale: pulsePhase === 2 ? 1.02 : 1
-        }}
-        transition={{ duration: 0.4, ease: "easeInOut" }}
-        style={{ filter: pulsePhase === 2 ? 'url(#glowOrange)' : 'none' }}
-      >
-        <line x1="165" y1="80" x2="320" y2="80" stroke="#f97316" strokeWidth="4" />
-        {/* Animated signal traveling down axon */}
-        {pulsePhase === 2 && (
-          <motion.circle
-            cy="80"
-            r="6"
-            fill="#fb923c"
-            initial={{ cx: 170, opacity: 0 }}
-            animate={{ cx: [170, 340], opacity: [0, 1, 1, 0] }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          />
-        )}
-        <circle cx="340" cy="80" r="12" fill="#f9731630" stroke="#f97316" strokeWidth="2" />
-        <circle cx="365" cy="65" r="8" fill="#f9731630" stroke="#f97316" strokeWidth="2" />
-        <circle cx="365" cy="95" r="8" fill="#f9731630" stroke="#f97316" strokeWidth="2" />
-        <text x="280" y="110" textAnchor="middle" fill="#fb923c" className="text-xs">axon</text>
-        <text x="280" y="122" fill="#f97316" opacity="0.6" className="text-[10px]">(sends signal out)</text>
-      </motion.g>
-    </svg>
+            {/* Axon (output) */}
+            <motion.g
+              animate={{ 
+                opacity: pulsePhase === 2 ? 1 : 0.4,
+                scale: pulsePhase === 2 ? 1.02 : 1
+              }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              style={{ filter: pulsePhase === 2 ? 'url(#glowOrange)' : 'none' }}
+            >
+              <line x1="165" y1="80" x2="320" y2="80" stroke="#f97316" strokeWidth="4" />
+              {/* Animated signal traveling down axon */}
+              {pulsePhase === 2 && (
+                <motion.circle
+                  cy="80"
+                  r="6"
+                  fill="#fb923c"
+                  initial={{ cx: 170, opacity: 0 }}
+                  animate={{ cx: [170, 340], opacity: [0, 1, 1, 0] }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                />
+              )}
+              <circle cx="340" cy="80" r="12" fill="#f9731630" stroke="#f97316" strokeWidth="2" />
+              <circle cx="365" cy="65" r="8" fill="#f9731630" stroke="#f97316" strokeWidth="2" />
+              <circle cx="365" cy="95" r="8" fill="#f9731630" stroke="#f97316" strokeWidth="2" />
+              <text x="280" y="110" textAnchor="middle" fill="#fb923c" className="text-xs">axon</text>
+              <text x="280" y="122" fill="#f97316" opacity="0.6" className="text-[10px]">(sends signal out)</text>
+            </motion.g>
+          </svg>
   )
 }
 
@@ -182,47 +182,47 @@ function BiologicalNeuronCards() {
   }, [currentStep])
   
   return (
-    <div className="grid md:grid-cols-3 gap-4 mb-6">
-      <motion.div 
-        className="p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-center"
-        animate={{ 
-          backgroundColor: pulsePhase === 0 ? 'rgba(99, 102, 241, 0.25)' : 'rgba(99, 102, 241, 0.1)',
-          borderColor: pulsePhase === 0 ? 'rgba(99, 102, 241, 0.6)' : 'rgba(99, 102, 241, 0.3)',
-          scale: pulsePhase === 0 ? 1.02 : 1
-        }}
-        transition={{ duration: 0.4, ease: "easeInOut" }}
-      >
-        <div className="text-indigo-400 font-medium mb-1">Dendrites</div>
-        <div className="text-xs text-indigo-400/60 mb-2">receive signals</div>
-        <div className="text-sm text-gray-400">Information flows in from other neurons</div>
-      </motion.div>
-      <motion.div 
-        className="p-4 rounded-xl bg-accent-cyan/10 border border-accent-cyan/30 text-center"
-        animate={{ 
-          backgroundColor: pulsePhase === 1 ? 'rgba(34, 211, 238, 0.25)' : 'rgba(34, 211, 238, 0.1)',
-          borderColor: pulsePhase === 1 ? 'rgba(34, 211, 238, 0.6)' : 'rgba(34, 211, 238, 0.3)',
-          scale: pulsePhase === 1 ? 1.02 : 1
-        }}
-        transition={{ duration: 0.4, ease: "easeInOut" }}
-      >
-        <div className="text-accent-cyan font-medium mb-1">Cell Body</div>
-        <div className="text-xs text-accent-cyan/60 mb-2">processes</div>
-        <div className="text-sm text-gray-400">Combines and transforms all the signals</div>
-      </motion.div>
-      <motion.div 
-        className="p-4 rounded-xl bg-orange-500/10 border border-orange-500/30 text-center"
-        animate={{ 
-          backgroundColor: pulsePhase === 2 ? 'rgba(249, 115, 22, 0.25)' : 'rgba(249, 115, 22, 0.1)',
-          borderColor: pulsePhase === 2 ? 'rgba(249, 115, 22, 0.6)' : 'rgba(249, 115, 22, 0.3)',
-          scale: pulsePhase === 2 ? 1.02 : 1
-        }}
-        transition={{ duration: 0.4, ease: "easeInOut" }}
-      >
-        <div className="text-orange-400 font-medium mb-1">Axon</div>
-        <div className="text-xs text-orange-400/60 mb-2">sends signal out</div>
-        <div className="text-sm text-gray-400">Passes the result to other neurons</div>
-      </motion.div>
-    </div>
+        <div className="grid md:grid-cols-3 gap-4 mb-6">
+          <motion.div 
+            className="p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-center"
+            animate={{ 
+              backgroundColor: pulsePhase === 0 ? 'rgba(99, 102, 241, 0.25)' : 'rgba(99, 102, 241, 0.1)',
+              borderColor: pulsePhase === 0 ? 'rgba(99, 102, 241, 0.6)' : 'rgba(99, 102, 241, 0.3)',
+              scale: pulsePhase === 0 ? 1.02 : 1
+            }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+          >
+            <div className="text-indigo-400 font-medium mb-1">Dendrites</div>
+            <div className="text-xs text-indigo-400/60 mb-2">receive signals</div>
+            <div className="text-sm text-gray-400">Information flows in from other neurons</div>
+          </motion.div>
+          <motion.div 
+            className="p-4 rounded-xl bg-accent-cyan/10 border border-accent-cyan/30 text-center"
+            animate={{ 
+              backgroundColor: pulsePhase === 1 ? 'rgba(34, 211, 238, 0.25)' : 'rgba(34, 211, 238, 0.1)',
+              borderColor: pulsePhase === 1 ? 'rgba(34, 211, 238, 0.6)' : 'rgba(34, 211, 238, 0.3)',
+              scale: pulsePhase === 1 ? 1.02 : 1
+            }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+          >
+            <div className="text-accent-cyan font-medium mb-1">Cell Body</div>
+            <div className="text-xs text-accent-cyan/60 mb-2">processes</div>
+            <div className="text-sm text-gray-400">Combines and transforms all the signals</div>
+          </motion.div>
+          <motion.div 
+            className="p-4 rounded-xl bg-orange-500/10 border border-orange-500/30 text-center"
+            animate={{ 
+              backgroundColor: pulsePhase === 2 ? 'rgba(249, 115, 22, 0.25)' : 'rgba(249, 115, 22, 0.1)',
+              borderColor: pulsePhase === 2 ? 'rgba(249, 115, 22, 0.6)' : 'rgba(249, 115, 22, 0.3)',
+              scale: pulsePhase === 2 ? 1.02 : 1
+            }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+          >
+            <div className="text-orange-400 font-medium mb-1">Axon</div>
+            <div className="text-xs text-orange-400/60 mb-2">sends signal out</div>
+            <div className="text-sm text-gray-400">Passes the result to other neurons</div>
+          </motion.div>
+        </div>
   )
 }
 

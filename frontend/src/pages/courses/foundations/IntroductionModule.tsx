@@ -58,7 +58,7 @@ export function IntroductionModule() {
         <div className="bg-void-800 rounded-xl p-6 border-l-4 border-flow-500">
           <p className="text-gray-300">
             <strong className="text-white">That's it.</strong> At its core, a neural network is just a pattern-learning machine. 
-            Show it enough examples, and it learns to recognize what's important.
+            Show it enough examples <em>along with the right answers</em>, and it learns to recognize what's important.
           </p>
         </div>
       </StepContent>
@@ -87,7 +87,7 @@ export function IntroductionModule() {
         </div>
         <p className="text-gray-300 leading-relaxed">
           The magic is that <strong className="text-white">you don't tell it how</strong> to recognize a dog. 
-          You just show it thousands of dog pictures, and it figures out the patterns itself.
+          You just show it thousands of pictures <em>labeled as "dog"</em>, and it figures out the patterns itself.
         </p>
       </StepContent>
 
@@ -157,7 +157,7 @@ export function IntroductionModule() {
             </li>
             <li className="flex items-start gap-3">
               <span className="w-6 h-6 rounded-full bg-accent-rose/30 text-accent-rose flex items-center justify-center text-sm font-medium shrink-0">2</span>
-              <span>They're told if they were right or wrong</span>
+              <span>They're told how wrong they were</span>
             </li>
             <li className="flex items-start gap-3">
               <span className="w-6 h-6 rounded-full bg-accent-emerald/30 text-accent-emerald flex items-center justify-center text-sm font-medium shrink-0">3</span>
