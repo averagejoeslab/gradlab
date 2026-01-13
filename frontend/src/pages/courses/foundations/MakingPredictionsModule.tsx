@@ -144,7 +144,7 @@ export function MakingPredictionsModule() {
           What happens at each layer?
         </h2>
         <p className="text-gray-300 mb-6 leading-relaxed">
-          At each layer, every neuron does the same job you learned in Building Blocks:
+          At each layer, every neuron does the same job you learned in "How Neurons Compute":
         </p>
 
         <div className="space-y-4 mb-6">

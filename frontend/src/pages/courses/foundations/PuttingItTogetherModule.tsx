@@ -76,9 +76,9 @@ export function PuttingItTogetherModule() {
 
         <div className="flex items-center justify-center my-8">
           <svg viewBox="0 0 300 140" className="w-full max-w-md">
-            {/* Loss curve going down */}
+            {/* Loss curve going down - starts high, ends low */}
             <path
-              d="M 30 30 Q 100 100 150 80 Q 200 60 270 110"
+              d="M 30 25 C 60 25, 80 50, 100 70 C 130 95, 160 105, 200 108 C 240 110, 260 110, 280 110"
               fill="none"
               stroke="#f43f5e"
               strokeWidth="3"
@@ -88,21 +88,21 @@ export function PuttingItTogetherModule() {
             <text x="150" y="135" textAnchor="middle" className="fill-gray-500 text-xs">training steps</text>
             <text x="15" y="70" className="fill-gray-500 text-xs">loss</text>
             
-            {/* Progress dots */}
+            {/* Progress dots - following the curve down */}
             {[
-              { x: 30, y: 30 },
-              { x: 80, y: 70 },
-              { x: 130, y: 85 },
-              { x: 180, y: 75 },
-              { x: 230, y: 95 },
-              { x: 270, y: 110 },
+              { x: 30, y: 25 },
+              { x: 70, y: 40 },
+              { x: 110, y: 75 },
+              { x: 160, y: 100 },
+              { x: 220, y: 108 },
+              { x: 280, y: 110 },
             ].map((point, i) => (
               <motion.circle
                 key={i}
                 cx={point.x}
                 cy={point.y}
                 r="4"
-                className="fill-accent-rose"
+                className={i < 2 ? "fill-accent-rose" : i < 4 ? "fill-grad-400" : "fill-accent-emerald"}
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: i * 0.2 }}
@@ -110,8 +110,8 @@ export function PuttingItTogetherModule() {
             ))}
 
             {/* High/Low labels */}
-            <text x="30" y="20" textAnchor="middle" className="fill-accent-rose text-xs">high</text>
-            <text x="270" y="125" textAnchor="middle" className="fill-accent-emerald text-xs">low</text>
+            <text x="30" y="15" textAnchor="middle" className="fill-accent-rose text-xs">high</text>
+            <text x="280" y="125" textAnchor="middle" className="fill-accent-emerald text-xs">low</text>
           </svg>
         </div>
 
@@ -288,10 +288,13 @@ export function PuttingItTogetherModule() {
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
           {[
-            { title: 'Introduction', desc: 'What is a neural network' },
-            { title: 'Making Predictions', desc: 'Forward pass through neurons' },
-            { title: 'Measuring Mistakes', desc: 'The loss function' },
-            { title: 'Finding What to Fix', desc: 'Gradients & backpropagation' },
+            { title: 'Introduction', desc: 'What neural networks are' },
+            { title: 'What is a Neuron?', desc: 'The basic building block' },
+            { title: 'How Neurons Compute', desc: 'Multiply, add, ReLU' },
+            { title: 'Building Networks', desc: 'Layers & MLPs' },
+            { title: 'Making Predictions', desc: 'The forward pass' },
+            { title: 'Measuring Mistakes', desc: 'Loss functions' },
+            { title: 'Finding What to Fix', desc: 'Gradients & backprop' },
             { title: 'Making Adjustments', desc: 'Gradient descent' },
             { title: 'Training Loop', desc: 'Repeat until good!' },
           ].map((item, i) => (
