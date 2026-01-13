@@ -1,4 +1,4 @@
-import { LucideIcon, BookOpen, Boxes, ArrowRight, Target, Search, Wrench, RefreshCw, Brain } from 'lucide-react'
+import { LucideIcon, BookOpen, CircleDot, Calculator, Layers, ArrowRight, Target, Search, Wrench, RefreshCw, Brain } from 'lucide-react'
 
 /**
  * Course and Module Data Definitions
@@ -138,13 +138,31 @@ export const foundationsCourse: CourseDefinition = {
       estimatedTime: '15 min',
     },
     {
-      id: 'building-blocks',
-      title: 'Building Blocks',
-      subtitle: 'The parts of a network',
-      description: 'Meet the neuron, understand weights and layers, and see how they combine into a complete network (MLP).',
-      icon: Boxes,
+      id: 'what-is-neuron',
+      title: 'What is a Neuron?',
+      subtitle: 'The basic building block',
+      description: 'Discover how biological neurons inspired artificial ones, and learn the key parts: inputs, weights, bias, and output.',
+      icon: CircleDot,
       color: 'cyan',
-      estimatedTime: '20 min',
+      estimatedTime: '10 min',
+    },
+    {
+      id: 'how-neurons-compute',
+      title: 'How Neurons Compute',
+      subtitle: 'The simple math inside',
+      description: 'See the actual calculation a neuron performs — it\'s just multiply and add! Plus, try it yourself with an interactive demo.',
+      icon: Calculator,
+      color: 'violet',
+      estimatedTime: '10 min',
+    },
+    {
+      id: 'building-networks',
+      title: 'Building Networks',
+      subtitle: 'Combining neurons together',
+      description: 'Learn how neurons form layers, and how layers stack into a complete network (MLP) that can recognize complex patterns.',
+      icon: Layers,
+      color: 'emerald',
+      estimatedTime: '10 min',
     },
     {
       id: 'making-predictions',

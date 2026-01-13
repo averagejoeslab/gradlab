@@ -6,7 +6,9 @@
 
 export { FoundationsCoursePage } from './FoundationsCoursePage'
 export { IntroductionModule } from './IntroductionModule'
-export { BuildingBlocksModule } from './BuildingBlocksModule'
+export { WhatIsNeuronModule } from './WhatIsNeuronModule'
+export { HowNeuronsComputeModule } from './HowNeuronsComputeModule'
+export { BuildingNetworksModule } from './BuildingNetworksModule'
 export { MakingPredictionsModule } from './MakingPredictionsModule'
 export { MeasuringMistakesModule } from './MeasuringMistakesModule'
 export { FindingWhatToFixModule } from './FindingWhatToFixModule'

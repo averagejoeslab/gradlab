@@ -240,13 +240,29 @@ export function IntroductionModule() {
           <div className="flex items-center gap-4 p-3 rounded-lg bg-void-800/30">
             <div className="w-8 h-8 rounded-full bg-accent-cyan/20 flex items-center justify-center text-accent-cyan text-sm font-medium">1</div>
             <div>
-              <span className="font-medium text-white">Building Blocks</span>
+              <span className="font-medium text-white">What is a Neuron?</span>
               <span className="text-gray-500 mx-2">—</span>
-              <span className="text-gray-400">The parts of a neural network</span>
+              <span className="text-gray-400">The basic building block</span>
             </div>
           </div>
           <div className="flex items-center gap-4 p-3 rounded-lg bg-void-800/30">
-            <div className="w-8 h-8 rounded-full bg-flow-600/20 flex items-center justify-center text-flow-400 text-sm font-medium">2</div>
+            <div className="w-8 h-8 rounded-full bg-accent-violet/20 flex items-center justify-center text-accent-violet text-sm font-medium">2</div>
+            <div>
+              <span className="font-medium text-white">How Neurons Compute</span>
+              <span className="text-gray-500 mx-2">—</span>
+              <span className="text-gray-400">The simple math inside</span>
+            </div>
+          </div>
+          <div className="flex items-center gap-4 p-3 rounded-lg bg-void-800/30">
+            <div className="w-8 h-8 rounded-full bg-accent-emerald/20 flex items-center justify-center text-accent-emerald text-sm font-medium">3</div>
+            <div>
+              <span className="font-medium text-white">Building Networks</span>
+              <span className="text-gray-500 mx-2">—</span>
+              <span className="text-gray-400">Combining neurons together</span>
+            </div>
+          </div>
+          <div className="flex items-center gap-4 p-3 rounded-lg bg-void-800/30">
+            <div className="w-8 h-8 rounded-full bg-flow-600/20 flex items-center justify-center text-flow-400 text-sm font-medium">4</div>
             <div>
               <span className="font-medium text-white">Making Predictions</span>
               <span className="text-gray-500 mx-2">—</span>
@@ -254,7 +270,7 @@ export function IntroductionModule() {
             </div>
           </div>
           <div className="flex items-center gap-4 p-3 rounded-lg bg-void-800/30">
-            <div className="w-8 h-8 rounded-full bg-accent-rose/20 flex items-center justify-center text-accent-rose text-sm font-medium">3</div>
+            <div className="w-8 h-8 rounded-full bg-accent-rose/20 flex items-center justify-center text-accent-rose text-sm font-medium">5</div>
             <div>
               <span className="font-medium text-white">Measuring Mistakes</span>
               <span className="text-gray-500 mx-2">—</span>
@@ -262,7 +278,7 @@ export function IntroductionModule() {
             </div>
           </div>
           <div className="flex items-center gap-4 p-3 rounded-lg bg-void-800/30">
-            <div className="w-8 h-8 rounded-full bg-grad-600/20 flex items-center justify-center text-grad-400 text-sm font-medium">4</div>
+            <div className="w-8 h-8 rounded-full bg-grad-600/20 flex items-center justify-center text-grad-400 text-sm font-medium">6</div>
             <div>
               <span className="font-medium text-white">Finding What to Fix</span>
               <span className="text-gray-500 mx-2">—</span>
@@ -270,7 +286,7 @@ export function IntroductionModule() {
             </div>
           </div>
           <div className="flex items-center gap-4 p-3 rounded-lg bg-void-800/30">
-            <div className="w-8 h-8 rounded-full bg-accent-emerald/20 flex items-center justify-center text-accent-emerald text-sm font-medium">5</div>
+            <div className="w-8 h-8 rounded-full bg-accent-emerald/20 flex items-center justify-center text-accent-emerald text-sm font-medium">7</div>
             <div>
               <span className="font-medium text-white">Making Adjustments</span>
               <span className="text-gray-500 mx-2">—</span>
@@ -278,7 +294,7 @@ export function IntroductionModule() {
             </div>
           </div>
           <div className="flex items-center gap-4 p-3 rounded-lg bg-void-800/30">
-            <div className="w-8 h-8 rounded-full bg-accent-violet/20 flex items-center justify-center text-accent-violet text-sm font-medium">6</div>
+            <div className="w-8 h-8 rounded-full bg-accent-violet/20 flex items-center justify-center text-accent-violet text-sm font-medium">8</div>
             <div>
               <span className="font-medium text-white">Putting It Together</span>
               <span className="text-gray-500 mx-2">—</span>
@@ -289,8 +305,8 @@ export function IntroductionModule() {
 
         <div className="bg-gradient-to-r from-flow-600/10 via-accent-violet/10 to-grad-600/10 rounded-xl p-6 border border-white/10">
           <p className="text-gray-300 mb-4">
-            <strong className="text-white">First up:</strong> We'll meet the building blocks — neurons, weights, layers — 
-            and see how they fit together to form a complete neural network.
+            <strong className="text-white">First up:</strong> We'll meet the neuron — the basic building block 
+            of every neural network — and see where it came from.
           </p>
           <p className="text-gray-400 text-sm">
             Everything uses just addition and multiplication. No complex math. No coding.
