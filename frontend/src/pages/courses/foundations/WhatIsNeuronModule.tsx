@@ -494,9 +494,13 @@ export function WhatIsNeuronModule() {
             <p className="text-gray-300 mb-2">
               <strong className="text-white">What it is:</strong> Information coming into the neuron
             </p>
+            <p className="text-gray-400 text-sm mb-2">
+              <strong className="text-gray-300">Image example:</strong> The features in a photo — 
+              "has four legs," "is fluffy," "has a tail"
+            </p>
             <p className="text-gray-400 text-sm">
-              <strong className="text-gray-300">Toddler example:</strong> The features they're seeing — 
-              "has four legs," "is fluffy," "has a tail," "barks"
+              <strong className="text-gray-300">Text example (LLMs):</strong> The context words — 
+              "The," "cat," "sat," "on," "the"
             </p>
           </motion.div>
 
@@ -515,10 +519,13 @@ export function WhatIsNeuronModule() {
             <p className="text-gray-300 mb-2">
               <strong className="text-white">What it is:</strong> How important each input is
             </p>
+            <p className="text-gray-400 text-sm mb-2">
+              <strong className="text-gray-300">Image example:</strong> Learning that "barks" is very important for 
+              identifying dogs (high weight), while "has four legs" is less helpful (lower weight)
+            </p>
             <p className="text-gray-400 text-sm">
-              <strong className="text-gray-300">Toddler example:</strong> Over time, they learn that "barks" 
-              is very important for identifying dogs (high weight), while "has four legs" is less helpful 
-              since cats have four legs too (lower weight)
+              <strong className="text-gray-300">Text example (LLMs):</strong> Learning that after "The cat sat on the," 
+              words like "mat" or "floor" are very likely (high weight), while "elephant" is unlikely (low weight)
             </p>
           </motion.div>
 
@@ -558,9 +565,12 @@ export function WhatIsNeuronModule() {
             <p className="text-gray-300 mb-2">
               <strong className="text-white">What it is:</strong> The neuron's result after processing
             </p>
+            <p className="text-gray-400 text-sm mb-2">
+              <strong className="text-gray-300">Image example:</strong> "I think this is a dog!" (a number representing how dog-like it is)
+            </p>
             <p className="text-gray-400 text-sm">
-              <strong className="text-gray-300">Toddler example:</strong> Their conclusion — "I think this is a dog!" 
-              (or a number representing how dog-like they think it is)
+              <strong className="text-gray-300">Text example (LLMs):</strong> A score for each possible next word, 
+              used to pick which word to generate next
             </p>
           </motion.div>
         </div>

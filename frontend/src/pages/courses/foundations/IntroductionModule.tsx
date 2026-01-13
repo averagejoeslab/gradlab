@@ -49,17 +49,24 @@ export function IntroductionModule() {
           What is a neural network?
         </h2>
         <p className="text-gray-300 mb-6 leading-relaxed text-lg">
-          A <strong className="text-flow-400">neural network</strong> is a system that learns patterns from examples.
+          A <strong className="text-flow-400">neural network</strong> is a system that learns patterns from data.
         </p>
         <p className="text-gray-300 mb-6 leading-relaxed">
           Instead of being told exactly what to do step by step, a neural network is shown 
-          many examples and figures out the patterns on its own. This approach — learning from 
-          labeled examples — is called <strong className="text-accent-violet">supervised learning</strong>.
+          many examples and figures out the patterns on its own.
         </p>
-        <div className="bg-void-800 rounded-xl p-6 border-l-4 border-flow-500">
+        <div className="bg-void-800 rounded-xl p-6 border-l-4 border-flow-500 mb-6">
           <p className="text-gray-300">
             <strong className="text-white">That's it.</strong> At its core, a neural network is just a pattern-learning machine. 
-            Show it enough examples <em>along with the right answers</em>, and it learns to recognize what's important.
+            Show it enough examples, and it learns to recognize what's important.
+          </p>
+        </div>
+        <div className="p-4 rounded-xl bg-accent-violet/10 border border-accent-violet/30">
+          <p className="text-sm text-gray-300">
+            <strong className="text-accent-violet">Note:</strong> Neural networks can learn in different ways. In this course, 
+            we'll focus on <strong className="text-white">supervised learning</strong> — where we provide labeled examples 
+            (like photos labeled "dog" or "cat"). Modern LLMs like ChatGPT use a different approach called 
+            <strong className="text-white"> self-supervised learning</strong>, where they learn by predicting the next word in text.
           </p>
         </div>
       </StepContent>
@@ -72,43 +79,69 @@ export function IntroductionModule() {
           A neural network takes <strong className="text-flow-400">inputs</strong> (information you give it) 
           and produces <strong className="text-grad-400">outputs</strong> (answers or predictions).
         </p>
-        <div className="grid md:grid-cols-3 gap-4 mb-6">
-          <div className="p-4 rounded-xl bg-flow-600/10 border border-flow-500/30 text-center">
-            <div className="text-sm text-gray-500 mb-2">Input</div>
-            <div className="text-white font-medium">A photo</div>
-          </div>
-          <div className="p-4 rounded-xl bg-void-800/50 text-center">
-            <div className="text-sm text-gray-500 mb-2">Neural Network</div>
-            <div className="text-white font-medium">→ learns patterns →</div>
-          </div>
-          <div className="p-4 rounded-xl bg-grad-600/10 border border-grad-500/30 text-center">
-            <div className="text-sm text-gray-500 mb-2">Output</div>
-            <div className="text-white font-medium">"It's a dog"</div>
+
+        {/* Image Example */}
+        <div className="mb-6">
+          <div className="text-sm text-gray-500 mb-2">Example 1: Image recognition</div>
+          <div className="grid md:grid-cols-3 gap-4">
+            <div className="p-4 rounded-xl bg-flow-600/10 border border-flow-500/30 text-center">
+              <div className="text-sm text-gray-500 mb-2">Input</div>
+              <div className="text-white font-medium">A photo 📷</div>
+            </div>
+            <div className="p-4 rounded-xl bg-void-800/50 text-center">
+              <div className="text-sm text-gray-500 mb-2">Neural Network</div>
+              <div className="text-white font-medium">→ finds patterns →</div>
+            </div>
+            <div className="p-4 rounded-xl bg-grad-600/10 border border-grad-500/30 text-center">
+              <div className="text-sm text-gray-500 mb-2">Output</div>
+              <div className="text-white font-medium">"It's a dog"</div>
+            </div>
           </div>
         </div>
+
+        {/* Text Example */}
+        <div className="mb-6">
+          <div className="text-sm text-gray-500 mb-2">Example 2: Text prediction (like ChatGPT)</div>
+          <div className="grid md:grid-cols-3 gap-4">
+            <div className="p-4 rounded-xl bg-flow-600/10 border border-flow-500/30 text-center">
+              <div className="text-sm text-gray-500 mb-2">Input</div>
+              <div className="text-white font-medium">"The cat sat on the..."</div>
+            </div>
+            <div className="p-4 rounded-xl bg-void-800/50 text-center">
+              <div className="text-sm text-gray-500 mb-2">Neural Network</div>
+              <div className="text-white font-medium">→ predicts next →</div>
+            </div>
+            <div className="p-4 rounded-xl bg-grad-600/10 border border-grad-500/30 text-center">
+              <div className="text-sm text-gray-500 mb-2">Output</div>
+              <div className="text-white font-medium">"mat"</div>
+            </div>
+          </div>
+        </div>
+
         <p className="text-gray-300 mb-6 leading-relaxed">
-          The magic is that <strong className="text-white">you don't tell it how</strong> to recognize a dog. 
-          You just show it thousands of pictures <em>labeled as "dog"</em>, and it figures out the patterns itself.
+          The magic is that <strong className="text-white">you don't tell it the rules</strong>. 
+          For images, you show it thousands of labeled pictures. For text, you show it billions of sentences 
+          and let it learn patterns about what words typically follow other words.
         </p>
 
         <div className="bg-void-800/50 rounded-xl p-4 border border-white/5">
           <div className="text-sm text-gray-500 mb-3">Neural networks power many things you use every day:</div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             <div className="p-2 rounded-lg bg-flow-600/10 text-center">
-              <div className="text-lg mb-1">📷</div>
-              <div className="text-xs text-gray-400">Photo tagging</div>
+              <div className="text-lg mb-1">💬</div>
+              <div className="text-xs text-gray-400">ChatGPT & AI chat</div>
             </div>
             <div className="p-2 rounded-lg bg-accent-violet/10 text-center">
               <div className="text-lg mb-1">🌐</div>
               <div className="text-xs text-gray-400">Translation</div>
             </div>
             <div className="p-2 rounded-lg bg-accent-cyan/10 text-center">
-              <div className="text-lg mb-1">🎤</div>
-              <div className="text-xs text-gray-400">Voice assistants</div>
+              <div className="text-lg mb-1">🎨</div>
+              <div className="text-xs text-gray-400">AI image generation</div>
             </div>
             <div className="p-2 rounded-lg bg-grad-600/10 text-center">
-              <div className="text-lg mb-1">🎬</div>
-              <div className="text-xs text-gray-400">Recommendations</div>
+              <div className="text-lg mb-1">🎤</div>
+              <div className="text-xs text-gray-400">Voice assistants</div>
             </div>
           </div>
         </div>
@@ -239,10 +272,17 @@ export function IntroductionModule() {
             </div>
           </div>
         </div>
-        <div className="bg-void-800 rounded-xl p-6 border-l-4 border-accent-violet">
+        <div className="bg-void-800 rounded-xl p-6 border-l-4 border-accent-violet mb-4">
           <p className="text-gray-300">
-            <strong className="text-white">This is the entire process.</strong> Every neural network — 
-            from simple ones to ChatGPT — learns by repeating this loop over and over.
+            <strong className="text-white">This is the supervised learning process.</strong> This loop is the foundation 
+            of how neural networks learn from labeled data.
+          </p>
+        </div>
+        <div className="p-4 rounded-xl bg-accent-cyan/10 border border-accent-cyan/30">
+          <p className="text-sm text-gray-300">
+            <strong className="text-accent-cyan">What about ChatGPT?</strong> LLMs like ChatGPT use these same building blocks, 
+            but their training is different. They learn by predicting the next word in massive amounts of text (self-supervised learning), 
+            then are fine-tuned with human feedback. This course teaches the core concepts that make all neural networks work.
           </p>
         </div>
       </StepContent>

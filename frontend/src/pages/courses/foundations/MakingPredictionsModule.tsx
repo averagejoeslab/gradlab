@@ -342,22 +342,39 @@ export function MakingPredictionsModule() {
           Here's something beautiful about deep networks: each layer learns to see different things.
         </p>
 
-        <div className="space-y-4 mb-6">
-          <div className="p-4 rounded-xl bg-flow-600/10 border border-flow-500/30">
-            <div className="font-medium text-flow-400 mb-2">Input layer</div>
-            <div className="text-gray-300">Raw data — just numbers representing pixels, sounds, or measurements</div>
+        <div className="grid md:grid-cols-2 gap-4 mb-6">
+          {/* Image Network Example */}
+          <div className="space-y-3">
+            <div className="text-sm text-gray-500 font-medium">For images (like face recognition):</div>
+            <div className="p-3 rounded-lg bg-flow-600/10 border border-flow-500/30">
+              <div className="text-xs text-flow-400 mb-1">Early layers</div>
+              <div className="text-sm text-gray-300">Edges, colors, simple shapes</div>
+            </div>
+            <div className="p-3 rounded-lg bg-accent-violet/10 border border-accent-violet/30">
+              <div className="text-xs text-accent-violet mb-1">Middle layers</div>
+              <div className="text-sm text-gray-300">Eyes, noses, ears</div>
+            </div>
+            <div className="p-3 rounded-lg bg-grad-600/10 border border-grad-500/30">
+              <div className="text-xs text-grad-400 mb-1">Final layers</div>
+              <div className="text-sm text-gray-300">"This is a face" or "This is John"</div>
+            </div>
           </div>
-          <div className="p-4 rounded-xl bg-accent-violet/10 border border-accent-violet/30">
-            <div className="font-medium text-accent-violet mb-2">Early hidden layers</div>
-            <div className="text-gray-300">Simple patterns — edges, colors, basic shapes</div>
-          </div>
-          <div className="p-4 rounded-xl bg-accent-cyan/10 border border-accent-cyan/30">
-            <div className="font-medium text-accent-cyan mb-2">Later hidden layers</div>
-            <div className="text-gray-300">Complex patterns — eyes, ears, faces, objects</div>
-          </div>
-          <div className="p-4 rounded-xl bg-grad-600/10 border border-grad-500/30">
-            <div className="font-medium text-grad-400 mb-2">Output layer</div>
-            <div className="text-gray-300">Final decision — "dog" or "cat", yes or no, a specific number</div>
+
+          {/* Text Network Example */}
+          <div className="space-y-3">
+            <div className="text-sm text-gray-500 font-medium">For text (like ChatGPT):</div>
+            <div className="p-3 rounded-lg bg-flow-600/10 border border-flow-500/30">
+              <div className="text-xs text-flow-400 mb-1">Early layers</div>
+              <div className="text-sm text-gray-300">Word meanings, grammar</div>
+            </div>
+            <div className="p-3 rounded-lg bg-accent-violet/10 border border-accent-violet/30">
+              <div className="text-xs text-accent-violet mb-1">Middle layers</div>
+              <div className="text-sm text-gray-300">Sentence structure, context</div>
+            </div>
+            <div className="p-3 rounded-lg bg-grad-600/10 border border-grad-500/30">
+              <div className="text-xs text-grad-400 mb-1">Final layers</div>
+              <div className="text-sm text-gray-300">"The next word should be 'mat'"</div>
+            </div>
           </div>
         </div>
 

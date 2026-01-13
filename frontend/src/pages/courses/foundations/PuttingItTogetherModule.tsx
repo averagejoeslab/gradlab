@@ -330,18 +330,27 @@ export function PuttingItTogetherModule() {
           </Link>
         </div>
 
-        <div className="bg-accent-emerald/10 border border-accent-emerald/30 rounded-xl p-4">
+        <div className="bg-accent-emerald/10 border border-accent-emerald/30 rounded-xl p-4 mb-4">
           <div className="flex items-start gap-3">
             <Check className="w-5 h-5 text-accent-emerald mt-0.5" />
             <div>
               <div className="font-medium text-white">What you've learned</div>
               <p className="text-sm text-gray-400 mt-1">
-                The same principles that power ChatGPT, image generators, and self-driving cars.
-                Those networks are bigger, but the core ideas are exactly what you learned here.
-                <strong className="text-white"> You now have the intuition!</strong>
+                The foundational concepts that power all neural networks: neurons, weights, forward pass, 
+                loss functions, gradients, backpropagation, and gradient descent.
+                <strong className="text-white"> You now have the core intuition!</strong>
               </p>
             </div>
           </div>
+        </div>
+
+        <div className="p-4 rounded-xl bg-accent-violet/10 border border-accent-violet/30">
+          <p className="text-sm text-gray-300">
+            <strong className="text-accent-violet">About ChatGPT and modern LLMs:</strong> These use the same building blocks 
+            you learned (neurons, weights, backpropagation), but with a different architecture (transformers) and 
+            training approach (self-supervised learning on text). They first learn by predicting the next word in billions 
+            of sentences, then are fine-tuned with human feedback. The intuition you've built here applies to understanding them too!
+          </p>
         </div>
       </StepContent>
     </ModuleShell>
