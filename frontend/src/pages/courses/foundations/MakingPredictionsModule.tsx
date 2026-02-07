@@ -370,11 +370,11 @@ export function MakingPredictionsModule() {
             <div className="p-3 rounded-lg bg-accent-violet/10 border border-accent-violet/30">
               <div className="text-xs text-accent-violet mb-1">Middle layers</div>
               <div className="text-sm text-gray-300">Sentence structure, context</div>
-            </div>
+          </div>
             <div className="p-3 rounded-lg bg-grad-600/10 border border-grad-500/30">
               <div className="text-xs text-grad-400 mb-1">Final layers</div>
               <div className="text-sm text-gray-300">"The next word should be 'mat'"</div>
-            </div>
+          </div>
           </div>
         </div>
 

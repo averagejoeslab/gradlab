@@ -195,7 +195,7 @@ export function PuttingItTogetherModule() {
           <p className="text-sm text-gray-400">
             We stop when the loss stops improving significantly — this is called <strong className="text-accent-emerald">convergence</strong>. 
             The network has learned as much as it can from the data.
-          </p>
+        </p>
         </div>
       </StepContent>
 

@@ -66,7 +66,7 @@ export function IntroductionModule() {
             <strong className="text-accent-violet">Note:</strong> Neural networks can learn in different ways. In this course, 
             we'll focus on <strong className="text-white">supervised learning</strong> — where we provide labeled examples 
             (like photos labeled "dog" or "cat"). Modern LLMs like ChatGPT use a different approach called 
-            <strong className="text-white"> self-supervised learning</strong>, where they learn by predicting the next word in text.
+            <strong className="text-white"> self-supervised learning</strong>, where they learn by predicting the next word in text, treating the next word as the label.
           </p>
         </div>
       </StepContent>
@@ -84,19 +84,19 @@ export function IntroductionModule() {
         <div className="mb-6">
           <div className="text-sm text-gray-500 mb-2">Example 1: Image recognition</div>
           <div className="grid md:grid-cols-3 gap-4">
-            <div className="p-4 rounded-xl bg-flow-600/10 border border-flow-500/30 text-center">
-              <div className="text-sm text-gray-500 mb-2">Input</div>
+          <div className="p-4 rounded-xl bg-flow-600/10 border border-flow-500/30 text-center">
+            <div className="text-sm text-gray-500 mb-2">Input</div>
               <div className="text-white font-medium">A photo 📷</div>
-            </div>
-            <div className="p-4 rounded-xl bg-void-800/50 text-center">
-              <div className="text-sm text-gray-500 mb-2">Neural Network</div>
-              <div className="text-white font-medium">→ finds patterns →</div>
-            </div>
-            <div className="p-4 rounded-xl bg-grad-600/10 border border-grad-500/30 text-center">
-              <div className="text-sm text-gray-500 mb-2">Output</div>
-              <div className="text-white font-medium">"It's a dog"</div>
-            </div>
           </div>
+          <div className="p-4 rounded-xl bg-void-800/50 text-center">
+            <div className="text-sm text-gray-500 mb-2">Neural Network</div>
+              <div className="text-white font-medium">→ finds patterns →</div>
+          </div>
+          <div className="p-4 rounded-xl bg-grad-600/10 border border-grad-500/30 text-center">
+            <div className="text-sm text-gray-500 mb-2">Output</div>
+            <div className="text-white font-medium">"It's a dog"</div>
+          </div>
+        </div>
         </div>
 
         {/* Text Example */}
